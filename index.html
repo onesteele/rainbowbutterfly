@@ -3561,30 +3561,47 @@ chat='true'>
                 }
 
                 // Query Supabase for matching user
+                console.log('Attempting to login with username:', username);
+                
                 supabase
                     .from('users')
                     .select('*')
                     .eq('username', username)
-                    .single()
+                    .maybeSingle() // Use maybeSingle instead of single to avoid errors when no user found
                     .then(({ data: user, error }) => {
-                        if (error || !user) {
-                            // Username not found
-                            showLoginError();
+                        console.log('Supabase response:', { user, error });
+
+                        if (error) {
+                            console.error('Supabase error:', error);
+                            showLoginError('Database Error - Check console');
                             return;
                         }
+
+                        if (!user) {
+                            // Username not found
+                            console.log('User not found in database');
+                            showLoginError('Invalid username or password');
+                            return;
+                        }
+
+                        console.log('User found:', user.username);
 
                         // Check password and status
                         if (user.password !== password) {
                             // Password incorrect
-                            showLoginError();
+                            console.log('Password incorrect');
+                            showLoginError('Invalid username or password');
                             return;
                         }
 
                         if (user.status !== 'active') {
                             // User account is inactive
+                            console.log('User account inactive');
                             showLoginError('Account Inactive');
                             return;
                         }
+
+                        console.log('Login successful!');
 
                         // Update last login
                         const lastLoginTime = new Date().toLocaleString('en-US', {
@@ -3617,8 +3634,8 @@ chat='true'>
                         }
                     })
                     .catch((error) => {
-                        console.error('Login error:', error);
-                        showLoginError('Connection Error');
+                        console.error('Login catch error:', error);
+                        showLoginError('Connection Error - Check console');
                     });
             }
         });
