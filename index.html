@@ -79,6 +79,7 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+            display: none;
         }
 
         /* Animated texture background for login - more visible */
@@ -421,11 +422,26 @@
         }
 
         .status-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--success-green);
+            width: 8px;
+            height: 8px;
+            background: #10b981;
             border-radius: 50%;
-            animation: pulse-dot 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .status-dot.blinking {
+            animation: blink-green 2s ease-in-out infinite;
+        }
+
+        @keyframes blink-green {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 4px #10b981;
+            }
+            50% {
+                opacity: 0.3;
+                box-shadow: 0 0 0px #10b981;
+            }
         }
 
         @keyframes pulse-dot {
@@ -2172,9 +2188,12 @@
         .status-dot {
             width: 8px;
             height: 8px;
-            background: rgba(255, 215, 0, 0.8);
+            background: #10b981;
             border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-dot.blinking {
+            animation: blink-green 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
@@ -3485,6 +3504,320 @@
             border-color: rgba(255, 215, 0, 0.7);
         }
 
+        /* ========================================
+           SUPPORT PAGE STYLES
+           ======================================== */
+        
+        .support-page-container {
+            display: flex;
+            gap: 0;
+            height: calc(100vh - 100px);
+            overflow: hidden;
+        }
+
+        /* FAQ Section (Left 65%) */
+        .faq-section {
+            width: 65%;
+            padding: 40px;
+            overflow-y: auto;
+            background: rgba(10, 10, 10, 0.5);
+        }
+
+        .faq-header {
+            margin-bottom: 32px;
+        }
+
+        .help-center-badge {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            cursor: default;
+        }
+
+        .faq-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0 0 12px 0;
+            letter-spacing: -1px;
+        }
+
+        .faq-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .faq-search-container {
+            position: relative;
+            margin: 32px 0;
+        }
+
+        .search-icon-left {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            opacity: 0.5;
+        }
+
+        .faq-search {
+            width: 100%;
+            padding: 18px 20px 18px 55px;
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            color: #FFFFFF;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .faq-search:focus {
+            outline: none;
+            border-color: rgba(255, 215, 0, 0.5);
+            background: rgba(26, 26, 26, 0.95);
+        }
+
+        .faq-search::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .faq-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .faq-category-btn {
+            padding: 10px 20px;
+            background: rgba(26, 26, 26, 0.6);
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            border-radius: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .faq-category-btn:hover {
+            background: rgba(26, 26, 26, 0.8);
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .faq-category-btn.active {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.6);
+            color: #FFD700;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: rgba(26, 26, 26, 0.6);
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateX(4px);
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .faq-arrow {
+            color: #FFD700;
+            font-size: 14px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 24px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 1000px;
+            padding: 0 24px 20px 24px;
+        }
+
+        .faq-answer p {
+            margin: 0 0 12px 0;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-video-placeholder {
+            margin-top: 16px;
+            padding: 20px;
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .video-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .video-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFD700;
+            margin-bottom: 4px;
+        }
+
+        .video-note {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .no-results-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+
+        .no-results-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+        }
+
+        .no-results-subtext {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Chat Widget Area (Right 35%) */
+        .chat-widget-container {
+            width: 35%;
+            background: rgba(5, 5, 5, 0.8);
+            border-left: 2px solid rgba(255, 215, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .chat-widget-placeholder {
+            text-align: center;
+            max-width: 100%;
+        }
+
+        .chat-placeholder-icon {
+            font-size: 72px;
+            margin-bottom: 24px;
+        }
+
+        .chat-placeholder-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0 0 12px 0;
+        }
+
+        .chat-placeholder-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 0 32px 0;
+        }
+
+        .chat-placeholder-box {
+            padding: 32px;
+            background: rgba(26, 26, 26, 0.6);
+            border: 2px dashed rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+        }
+
+        .chat-placeholder-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFD700;
+            margin-bottom: 8px;
+        }
+
+        .chat-placeholder-dims {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+        }
+
+        .chat-placeholder-note {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Scrollbar for FAQ section */
+        .faq-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .faq-section::-webkit-scrollbar-track {
+            background: rgba(10, 10, 10, 0.3);
+        }
+
+        .faq-section::-webkit-scrollbar-thumb {
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .faq-section::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 215, 0, 0.5);
+        }
+
     </style>
 
     <!-- Supabase Client Library -->
@@ -3570,11 +3903,11 @@
                 </ul>
                 <div class="nav-right">
                     <div class="account-widget" id="accountWidget">
-                        <div class="account-avatar">AC</div>
+                        <div class="account-avatar" id="userInitials">AC</div>
                         <div class="account-info">
-                            <div class="account-name">Algorithm Client</div>
+                            <div class="account-name" id="userName">Algorithm Client</div>
                             <div class="account-status">
-                                <span class="status-dot"></span>
+                                <span class="status-dot blinking"></span>
                                 Active Member
                             </div>
                         </div>
@@ -3912,9 +4245,349 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Support Page -->
+            <div class="page" id="support">
+                <div class="support-page-container">
+                    <!-- Left Side: FAQ Section (65%) -->
+                    <div class="faq-section">
+                        <div class="faq-header">
+                            <button class="help-center-badge">
+                                ⚡ HELP CENTER
+                            </button>
+                            <h1 class="faq-title">FAQ Library</h1>
+                            <p class="faq-subtitle">Find answers to commonly asked questions about the Algorithm Client program.</p>
+                        </div>
+
+                        <!-- Search Bar -->
+                        <div class="faq-search-container">
+                            <span class="search-icon-left">🔍</span>
+                            <input type="text" class="faq-search" id="faqSearch" placeholder="Search for answers..." onkeyup="searchFAQs()" />
+                        </div>
+
+                        <!-- Category Filters -->
+                        <div class="faq-categories">
+                            <button class="faq-category-btn active" onclick="filterFAQCategory('all')">All Questions</button>
+                            <button class="faq-category-btn" onclick="filterFAQCategory('getting-started')">Getting Started</button>
+                            <button class="faq-category-btn" onclick="filterFAQCategory('platform')">Platform & Setup</button>
+                            <button class="faq-category-btn" onclick="filterFAQCategory('algorithm')">Algorithm</button>
+                            <button class="faq-category-btn" onclick="filterFAQCategory('performance')">Performance</button>
+                            <button class="faq-category-btn" onclick="filterFAQCategory('prop-firm')">Prop Firms</button>
+                            <button class="faq-category-btn" onclick="filterFAQCategory('troubleshooting')">Troubleshooting</button>
+                            <button class="faq-category-btn" onclick="filterFAQCategory('billing')">Billing</button>
+                        </div>
+
+                        <!-- FAQ Items -->
+                        <div class="faq-list" id="faqList">
+                            <!-- Content will be populated here -->
+                            <div class="faq-item" data-category="getting-started">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>How do I get started after purchasing?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Complete the onboarding process by watching all training videos in order. You'll receive access to all member resources and can schedule your setup call with our team. Start with the fundamentals video as it covers essential concepts.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="getting-started">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What is included in my subscription?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Your subscription includes access to PropBot and Voodoo algorithms, training materials, Discord community, weekly webinars, priority support, and ongoing strategy updates.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="getting-started">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>Do I need trading experience to use this?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>No prior trading experience required. The algorithm handles all trading decisions automatically. However, understanding basic trading concepts helps you better manage expectations and your account.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="getting-started">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What equipment or software do I need?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>You need: a computer with internet access, a supported brokerage account (Tradovate, Apex, or Interactive Brokers), and a TradersPost account. We recommend the TradersPost Starter Plan for optimal performance.</p>
+                                </div>
+                            </div>
+
+                            <!-- PLATFORM & SETUP -->
+                            <div class="faq-item" data-category="platform">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What is TradersPost?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>TradersPost is the platform that receives trading signals from our algorithm and executes them on your brokerage account. It acts as the bridge between our signals and your broker.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="platform">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What brokers are supported?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>We support Tradovate, Apex Trader Funding, and Interactive Brokers. Each broker has specific setup requirements detailed in our training materials.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="platform">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>How do I enable Auto-Submit in TradersPost?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>In TradersPost, go to your broker connection settings and toggle "Auto-Submit Orders" to ON. This ensures orders execute automatically without manual confirmation.</p>
+                                </div>
+                            </div>
+
+                            <!-- ALGORITHM QUESTIONS -->
+                            <div class="faq-item" data-category="algorithm">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What is PropBot used for?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>PropBot is designed for prop firm evaluations. It focuses on consistent, steady gains while managing risk according to prop firm rules. It automatically flattens positions by 5PM EST to comply with requirements.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="algorithm">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What is Voodoo Bot used for?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Voodoo Bot is optimized for funded accounts and larger capital. It uses a more aggressive strategy aimed at maximizing returns while maintaining proper risk management.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="algorithm">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What instruments does the algorithm trade?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>The algorithm primarily trades ES (E-mini S&P 500) and NQ (E-mini Nasdaq) futures contracts. For smaller accounts, MES and MNQ micro contracts are supported.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="algorithm">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>Does the algorithm take order flow into account?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Yes, the algorithm incorporates advanced order flow analysis, market structure, and liquidity patterns to identify high-probability trade setups.</p>
+                                </div>
+                            </div>
+
+                            <!-- PERFORMANCE & EXPECTATIONS -->
+                            <div class="faq-item" data-category="performance">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>Why doesn't the algo trade every day?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>The algorithm only takes trades when market conditions meet its specific criteria. Trading every day without favorable conditions would increase risk and reduce profitability. Quality over quantity is key to long-term success.</p>
+                                    <div class="faq-video-placeholder">
+                                        <div class="video-icon">📹</div>
+                                        <div class="video-text">Video: Understanding Trade Frequency</div>
+                                        <div class="video-note">// Video embed area</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="performance">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What is the 90-day evaluation period?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>The 90-day evaluation period is the recommended timeframe to properly assess algorithm performance. This provides enough sample size to account for market variability and different conditions.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="performance">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>Should I watch the trades in real-time?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Not recommended. Watching trades in real-time can lead to emotional decision-making and unnecessary stress. The algorithm is designed to work independently - trust the process and review results periodically.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="performance">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>Is it normal to have losing days or weeks?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Yes, absolutely. Even profitable trading systems have losing periods. What matters is the overall trend and performance over months, not individual days or weeks. Drawdowns are a normal part of trading.</p>
+                                </div>
+                            </div>
+
+                            <!-- PROP FIRM SPECIFIC -->
+                            <div class="faq-item" data-category="prop-firm">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What happens after I pass a prop evaluation?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>After passing, you'll receive a funded account from the prop firm. You can continue using PropBot or switch to Voodoo Bot for the funded account. Make sure to update your TradersPost connection to the new funded account.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="prop-firm">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>Will the algo flatten by 5PM EST for Apex rules?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Yes, PropBot automatically closes all positions by 5PM EST to comply with Apex and most prop firm rules that don't allow overnight holdings during evaluations.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="prop-firm">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>Can I run the algorithm on multiple prop accounts?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Yes! You can run the algorithm on as many prop evaluations as you want simultaneously. Each account requires its own TradersPost subscription and webhook setup.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="prop-firm">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What sizing should I use for a $50K evaluation?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>For $50K evaluations, we recommend starting with 1 MNQ contract. You can adjust the Signal Quantity Multiplier in TradersPost based on your risk tolerance and prop firm rules.</p>
+                                </div>
+                            </div>
+
+                            <!-- TROUBLESHOOTING -->
+                            <div class="faq-item" data-category="troubleshooting">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>The algo isn't trading — what do I check?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Check these in order: 1) Is Auto-Submit enabled in TradersPost? 2) Is your broker connection active? 3) Is the correct strategy enabled? 4) Are there sufficient market conditions for a trade? Remember, the algo doesn't trade every day.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="troubleshooting">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>I got a "LiquidationOnly" rejection — what does that mean?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>This means your account has hit a margin or drawdown limit and can only close positions, not open new ones. Check your account status with your broker - you may have violated prop firm rules or hit a daily loss limit.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="troubleshooting">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>All my trades are being rejected — what's wrong?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Common causes: incorrect API credentials, wrong account type selected (paper vs live), insufficient margin, or broker connection issues. Check your TradersPost logs for specific error messages.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="troubleshooting">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>My account got blown — what happened?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>If an account was blown unexpectedly, possible causes include: wrong Signal Quantity Multiplier setting, multiple strategies running simultaneously, or manual trades conflicting with algorithm. Contact support immediately to review logs.</p>
+                                </div>
+                            </div>
+
+                            <!-- BILLING & REFUNDS -->
+                            <div class="faq-item" data-category="billing">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>What is your refund policy?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>We offer refunds within the first 90 days if the algorithm doesn't perform as expected during your evaluation period. Please review our full refund policy in your member agreement or contact support for details.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="billing">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>How do I update my payment information?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Update your billing information through your account settings or contact support via the chat widget for assistance.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="billing">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>Can I cancel my subscription?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Yes, you can cancel anytime. Contact support to initiate cancellation. Your access will continue through the end of your current billing period.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item" data-category="billing">
+                                <div class="faq-question" onclick="toggleFAQ(this)">
+                                    <span>Do you offer payment plans?</span>
+                                    <span class="faq-arrow">▼</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Yes, we offer flexible payment options. Contact our sales team or support to discuss payment plan options that work for your situation.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- No Results Message -->
+                        <div class="no-results" id="noResults" style="display: none;">
+                            <div class="no-results-icon">🔍</div>
+                            <div class="no-results-text">No FAQs found</div>
+                            <div class="no-results-subtext">Try different keywords or browse by category</div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Chat Widget Area (35%) -->
+                    <div class="chat-widget-container">
+                        <div class="chat-widget-placeholder">
+                            <div class="chat-placeholder-icon">💬</div>
+                            <h3 class="chat-placeholder-title">Priority Support</h3>
+                            <p class="chat-placeholder-text">Live chat support is available here</p>
+                            <div class="chat-placeholder-box">
+                                <div class="chat-placeholder-label">Chat Widget Embed Area</div>
+                                <div class="chat-placeholder-dims">35% width × Full height</div>
+                                <div class="chat-placeholder-note">Add your chat widget embed code here</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Support Button -->
+        <!-- Support Button (Floating) -->
         <button class="support-button" onclick="openChatSupport()">
             🆘 Priority Support
         </button>
@@ -3945,6 +4618,17 @@
         } catch (error) {
             console.error('❌ Supabase initialization error:', error);
             alert('Supabase not configured. Please add your Supabase credentials.');
+        }
+
+        // Restore user display if logged in
+        const storedUser = sessionStorage.getItem('currentUser');
+        if (storedUser) {
+            try {
+                const user = JSON.parse(storedUser);
+                updateUserDisplay(user);
+            } catch (e) {
+                console.error('Error restoring user:', e);
+            }
         }
 
         // Video data
@@ -4252,6 +4936,16 @@
                             .eq('id', user.id)
                             .then(() => console.log('Last login updated'));
 
+                        // Store user data in sessionStorage
+                        sessionStorage.setItem('currentUser', JSON.stringify({
+                            name: user.name,
+                            username: user.username,
+                            role: user.role
+                        }));
+
+                        // Update UI with user's name
+                        updateUserDisplay(user);
+
                         // Check if user has admin role
                         if (user.role === 'admin') {
                             // Admin user - redirect to admin panel
@@ -4272,6 +4966,25 @@
                     });
             }
         });
+
+        // Update user display in navigation
+        function updateUserDisplay(user) {
+            const userName = document.getElementById('userName');
+            const userInitials = document.getElementById('userInitials');
+            
+            if (userName) {
+                userName.textContent = user.name || 'Algorithm Client';
+            }
+            
+            if (userInitials && user.name) {
+                // Get initials from name
+                const nameParts = user.name.split(' ');
+                const initials = nameParts.length >= 2 
+                    ? nameParts[0][0] + nameParts[nameParts.length - 1][0]
+                    : user.name.substring(0, 2);
+                userInitials.textContent = initials.toUpperCase();
+            }
+        }
 
         // Perform client login with animation
         function performClientLogin() {
@@ -4411,26 +5124,85 @@
 
         // Open chat support widget
         function openChatSupport() {
-            // Check if FreshworksWidget is available
-            if (typeof FreshworksWidget !== 'undefined') {
-                try {
-                    FreshworksWidget('open');
-                } catch (error) {
-                    console.error('Error opening chat widget:', error);
-                    // Fallback to email if chat widget fails
-                    window.open('mailto:support@profitinsider.com');
+            // Navigate to support page
+            showPage('support');
+        }
+
+        // ============================================
+        // FAQ FUNCTIONS
+        // ============================================
+
+        function toggleFAQ(element) {
+            const faqItem = element.closest('.faq-item');
+            const isOpen = faqItem.classList.contains('open');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('open');
                 }
+            });
+            
+            // Toggle this FAQ
+            if (isOpen) {
+                faqItem.classList.remove('open');
             } else {
-                console.warn('Chat widget not loaded yet. Please wait a moment and try again.');
-                // Give it a moment to load, then try again
-                setTimeout(() => {
-                    if (typeof FreshworksWidget !== 'undefined') {
-                        FreshworksWidget('open');
-                    } else {
-                        // Final fallback to email
-                        alert('Chat support is loading. Please try again in a moment, or contact us at support@profitinsider.com');
-                    }
-                }, 1000);
+                faqItem.classList.add('open');
+            }
+        }
+
+        function filterFAQCategory(category) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('noResults');
+            let visibleCount = 0;
+            
+            // Update active button
+            document.querySelectorAll('.faq-category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter items
+            faqItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show/hide no results
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        function searchFAQs() {
+            const searchTerm = document.getElementById('faqSearch').value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('noResults');
+            let visibleCount = 0;
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show/hide no results
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            
+            // Reset category filter if searching
+            if (searchTerm) {
+                document.querySelectorAll('.faq-category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector('.faq-category-btn').classList.add('active');
             }
         }
 
@@ -5475,6 +6247,9 @@
         window.toggleIconPicker = toggleIconPicker;
         window.showIconCategory = showIconCategory;
         window.selectIcon = selectIcon;
+        window.toggleFAQ = toggleFAQ;
+        window.filterFAQCategory = filterFAQCategory;
+        window.searchFAQs = searchFAQs;
 
         }); // End of DOMContentLoaded wrapper
     </script>
