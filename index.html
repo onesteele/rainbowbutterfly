@@ -3343,7 +3343,23 @@
 
     <!-- Supabase Client Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/695452bda6d2071982ebf8aa/1jdom6d1g';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
 </head>
+
 <body>
     <!-- Animated Background -->
     <div class="background">
@@ -4261,31 +4277,6 @@
                 document.getElementById('password').value = '';
                 loginText.textContent = 'Access Platform';
             }, 600);
-        }
-
-        // Open chat support widget
-        function openChatSupport() {
-            // Check if FreshworksWidget is available
-            if (typeof FreshworksWidget !== 'undefined') {
-                try {
-                    FreshworksWidget('open');
-                } catch (error) {
-                    console.error('Error opening chat widget:', error);
-                    // Fallback to email if chat widget fails
-                    window.open('mailto:support@profitinsider.com');
-                }
-            } else {
-                console.warn('Chat widget not loaded yet. Please wait a moment and try again.');
-                // Give it a moment to load, then try again
-                setTimeout(() => {
-                    if (typeof FreshworksWidget !== 'undefined') {
-                        FreshworksWidget('open');
-                    } else {
-                        // Final fallback to email
-                        alert('Chat support is loading. Please try again in a moment, or contact us at support@profitinsider.com');
-                    }
-                }, 1000);
-            }
         }
 
         // Admin logout function
