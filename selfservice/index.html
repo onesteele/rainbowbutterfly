@@ -119,12 +119,6 @@
             background: rgba(255, 215, 0, 0.1);
             border: 2px solid rgba(255, 215, 0, 0.3);
             border-radius: 16px;
-            animation: logoFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
         }
 
         .pi-icon img {
@@ -445,6 +439,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="authCode">Authentication Code</label>
+                    <input type="text" id="authCode" placeholder="Enter 4-digit code" required 
+                           pattern="[0-9]{4}" 
+                           maxlength="4"
+                           title="Enter the 4-digit authentication code">
+                    <p style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-top: 6px;">
+                        Contact support if you don't have an authentication code
+                    </p>
+                </div>
+
+                <div class="form-group">
                     <label for="clientId">Choose Your Client ID</label>
                     <input type="text" id="clientId" placeholder="johnsmith123" required 
                            pattern="[a-zA-Z0-9_\-]+" 
@@ -503,6 +508,12 @@
 
     <script>
         // ============================================
+        // AUTHENTICATION CODE CONFIGURATION
+        // ============================================
+        // Change this 4-digit code whenever you want to update access
+        const AUTHENTICATION_CODE = '4468';
+
+        // ============================================
         // SUPABASE CONFIGURATION
         // ============================================
         const SUPABASE_URL = 'https://ztuwblktrssupogcxamz.supabase.co';
@@ -527,9 +538,16 @@
             const firstName = document.getElementById('firstName').value.trim();
             const lastName = document.getElementById('lastName').value.trim();
             const email = document.getElementById('email').value.trim();
+            const authCode = document.getElementById('authCode').value.trim();
             const clientId = document.getElementById('clientId').value.trim();
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validate authentication code FIRST
+            if (authCode !== AUTHENTICATION_CODE) {
+                showError('Invalid authentication code. Please contact support for the correct code.');
+                return;
+            }
 
             // Validate passwords match
             if (password !== confirmPassword) {
