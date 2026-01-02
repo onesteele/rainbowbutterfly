@@ -2367,7 +2367,6 @@
         .message:hover {
             background: rgba(255, 215, 0, 0.05);
             border-color: rgba(255, 215, 0, 0.1);
-            transform: translateX(2px);
         }
 
         .message:last-child {
@@ -3351,6 +3350,7 @@
         
         .link-preview {
             margin-top: 12px;
+            max-width: 600px;
             border: 1px solid rgba(255, 215, 0, 0.2);
             border-left: 4px solid rgba(255, 215, 0, 0.5);
             border-radius: 8px;
@@ -3363,7 +3363,6 @@
             background: rgba(26, 26, 26, 0.8);
             border-color: rgba(255, 215, 0, 0.3);
             border-left-color: rgba(255, 215, 0, 0.7);
-            transform: translateX(2px);
         }
 
         .link-preview-content {
@@ -3373,16 +3372,16 @@
         .link-preview-image {
             width: 100%;
             height: auto;
-            max-height: 300px;
+            max-height: 250px;
             object-fit: cover;
             display: block;
         }
 
         .link-preview-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: #FFD700;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -3390,27 +3389,29 @@
         }
 
         .link-preview-description {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 8px;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             line-height: 1.4;
         }
 
         .link-preview-url {
-            font-size: 12px;
-            color: rgba(255, 215, 0, 0.6);
+            font-size: 15px;
+            font-weight: 600;
+            color: #60a5fa;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            transition: all 0.2s ease;
         }
 
         .link-preview-url:hover {
-            color: rgba(255, 215, 0, 0.8);
+            color: #93c5fd;
             text-decoration: underline;
         }
 
@@ -4056,104 +4057,21 @@
                 <p class="page-subtitle">Your complete collection of members-only training videos and tutorials.</p>
 
                 <div class="video-grid">
-                    <div class="video-card" onclick="showVideoDetail('fundamentals')">
+                    <div class="video-card" onclick="showVideoDetail('weekly-recap-dec26')">
                         <div class="video-thumbnail">
                             <div class="video-play-btn"></div>
-                            <div class="video-duration">⏱ 12 min</div>
+                            <div class="video-duration">⏱ 22 min</div>
                         </div>
                         <div class="video-info">
-                            <span class="video-category">Getting Started</span>
-                            <h3 class="video-title">Algorithm Fundamentals</h3>
-                            <p class="video-description">Learn the core principles that drive our algorithm and how to maximize your results from day one.</p>
+                            <span class="video-category">Performance Updates</span>
+                            <h3 class="video-title">Weekly Trading Recap: VoodooBot and PropBot Performance Analysis (Dec. 26th 2025)</h3>
+                            <p class="video-description">Performance analysis of VoodooBot and PropBot during the holiday trading week, including win rates, risk management insights, and scaling technology breakdown.</p>
                             <div class="video-meta">
-                                <span>⏱ 12 min</span>
+                                <span>⏱ 22 min</span>
                                 <span>•</span>
                                 <span>📄 Members Only</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="video-card" onclick="showVideoDetail('strategies')">
-                        <div class="video-thumbnail">
-                            <div class="video-play-btn"></div>
-                            <div class="video-duration">⏱ 24 min</div>
-                        </div>
-                        <div class="video-info">
-                            <span class="video-category">Strategy</span>
-                            <h3 class="video-title">Advanced Trading Strategies</h3>
-                            <p class="video-description">Deep dive into advanced strategies that our top performers use to generate consistent returns.</p>
-                            <div class="video-meta">
-                                <span>⏱ 24 min</span>
                                 <span>•</span>
-                                <span>📄 Members Only</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="video-card" onclick="showVideoDetail('risk')">
-                        <div class="video-thumbnail">
-                            <div class="video-play-btn"></div>
-                            <div class="video-duration">⏱ 18 min</div>
-                        </div>
-                        <div class="video-info">
-                            <span class="video-category">Risk Management</span>
-                            <h3 class="video-title">Protecting Your Capital</h3>
-                            <p class="video-description">Essential risk management techniques to protect your investments and minimize downside exposure.</p>
-                            <div class="video-meta">
-                                <span>⏱ 18 min</span>
-                                <span>•</span>
-                                <span>📄 Members Only</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="video-card" onclick="showVideoDetail('market')">
-                        <div class="video-thumbnail">
-                            <div class="video-play-btn"></div>
-                            <div class="video-duration">⏱ 15 min</div>
-                        </div>
-                        <div class="video-info">
-                            <span class="video-category">Analysis</span>
-                            <h3 class="video-title">Market Analysis Masterclass</h3>
-                            <p class="video-description">Master the art of reading market trends and identifying high-probability trading opportunities.</p>
-                            <div class="video-meta">
-                                <span>⏱ 15 min</span>
-                                <span>•</span>
-                                <span>📄 Members Only</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="video-card" onclick="showVideoDetail('psychology')">
-                        <div class="video-thumbnail">
-                            <div class="video-play-btn"></div>
-                            <div class="video-duration">⏱ 21 min</div>
-                        </div>
-                        <div class="video-info">
-                            <span class="video-category">Mindset</span>
-                            <h3 class="video-title">Trading Psychology & Discipline</h3>
-                            <p class="video-description">Develop the mental framework and discipline required for consistent long-term profitability.</p>
-                            <div class="video-meta">
-                                <span>⏱ 21 min</span>
-                                <span>•</span>
-                                <span>📄 Members Only</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="video-card" onclick="showVideoDetail('automation')">
-                        <div class="video-thumbnail">
-                            <div class="video-play-btn"></div>
-                            <div class="video-duration">⏱ 16 min</div>
-                        </div>
-                        <div class="video-info">
-                            <span class="video-category">Technology</span>
-                            <h3 class="video-title">Automation & Optimization</h3>
-                            <p class="video-description">Leverage cutting-edge automation tools to optimize your trading performance and save time.</p>
-                            <div class="video-meta">
-                                <span>⏱ 16 min</span>
-                                <span>•</span>
-                                <span>📄 Members Only</span>
+                                <span>151 views</span>
                             </div>
                         </div>
                     </div>
@@ -4727,47 +4645,13 @@
 
         // Video data
         const videoData = {
-            fundamentals: {
-                category: 'Getting Started',
-                title: 'Algorithm Fundamentals',
-                duration: '12',
-                about: 'This foundational video introduces you to the core principles that power our proprietary trading algorithm. You\'ll gain a comprehensive understanding of how the system works and why it\'s been so effective for our members.<br><br>We\'ll walk you through the basic concepts, terminology, and framework that you\'ll use throughout your journey with us. By the end of this video, you\'ll have a solid foundation to build upon as you progress through the more advanced materials.',
-                topics: ['Core Algorithm Concepts', 'System Overview', 'Key Terminology', 'Getting Set Up']
-            },
-            strategies: {
-                category: 'Strategy',
-                title: 'Advanced Trading Strategies',
-                duration: '24',
-                about: 'Deep dive into the advanced strategies that our top performers use to generate consistent returns. This comprehensive training covers multiple proven approaches to algorithmic trading.<br><br>You\'ll learn how to identify optimal entry and exit points, manage multiple positions simultaneously, and adapt strategies to changing market conditions for maximum profitability.',
-                topics: ['Momentum Trading', 'Mean Reversion', 'Breakout Strategies', 'Risk-Adjusted Returns']
-            },
-            risk: {
-                category: 'Risk Management',
-                title: 'Protecting Your Capital',
-                duration: '18',
-                about: 'Master essential risk management techniques that separate successful traders from the rest. Learn how to protect your capital while maximizing growth potential.<br><br>This video covers position sizing, stop-loss strategies, portfolio diversification, and psychological aspects of risk management that will help you trade with confidence and discipline.',
-                topics: ['Position Sizing', 'Stop Loss Strategies', 'Diversification Methods', 'Risk/Reward Ratios']
-            },
-            market: {
-                category: 'Analysis',
-                title: 'Market Analysis Masterclass',
-                duration: '15',
-                about: 'Learn to read market trends like a professional trader. This masterclass teaches you the technical and fundamental analysis skills needed to identify high-probability opportunities.<br><br>You\'ll discover how to interpret market indicators, recognize patterns, and use data-driven analysis to make informed trading decisions with greater accuracy.',
-                topics: ['Technical Indicators', 'Chart Patterns', 'Market Sentiment', 'Trend Analysis']
-            },
-            psychology: {
-                category: 'Mindset',
-                title: 'Trading Psychology & Discipline',
-                duration: '21',
-                about: 'Develop the mental framework required for consistent long-term profitability. This video addresses the psychological challenges that every trader faces.<br><br>Learn how to manage emotions, maintain discipline during winning and losing streaks, and build the mindset of successful professional traders who consistently outperform the market.',
-                topics: ['Emotional Control', 'Discipline Building', 'Performance Mindset', 'Handling Losses']
-            },
-            automation: {
-                category: 'Technology',
-                title: 'Automation & Optimization',
-                duration: '16',
-                about: 'Leverage cutting-edge automation tools to optimize your trading performance and free up your time. Learn how to set up automated systems that execute your strategies flawlessly.<br><br>This training covers bot configuration, backtesting strategies, performance monitoring, and continuous optimization to ensure your algorithms stay profitable in changing markets.',
-                topics: ['Bot Configuration', 'Backtesting', 'Performance Monitoring', 'Strategy Optimization']
+            'weekly-recap-dec26': {
+                category: 'Performance Updates',
+                title: 'Weekly Trading Recap: VoodooBot and PropBot Performance Analysis (Dec. 26th 2025)',
+                duration: '22',
+                videoUrl: 'https://www.loom.com/embed/f45a049b2d8b41a095598b8fe8b348a0',
+                about: 'Hey team, in this week\'s recap, I discussed the performance of our VoodooBot and PropBot algorithms during a slow trading week due to the holidays. VoodooBot had only four trades, losing three but still ended up profitable thanks to its scaling technology. On the other hand, PropBot excelled with a 93% win rate, showcasing its effectiveness in choppy market conditions. I emphasized the importance of managing risk and not over-leveraging, especially during volatile periods. If you have any questions or need help reallocating risk, please reach out to me.',
+                topics: ['VoodooBot Performance', 'PropBot Win Rate', 'Risk Management', 'Holiday Trading Conditions', 'Scaling Technology']
             }
         };
 
@@ -5139,6 +5023,9 @@
                 dashboard.classList.add('visible');
                 loginBtn.classList.remove('loading');
                 loginText.textContent = 'Access Platform';
+                
+                // Load video library from database
+                loadVideoLibrary();
             }, 8000);
         }
 
@@ -5183,6 +5070,11 @@
                 }
             }
 
+            // Load videos when navigating to videos page
+            if (pageName === 'videos') {
+                loadVideoLibrary();
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -5194,13 +5086,19 @@
 
         // Show video detail
         function showVideoDetail(videoId) {
-            const video = videoData[videoId];
-            if (!video) return;
+            // Try to get video from database first, fallback to hardcoded data
+            const video = (window.videoDataFromDatabase && window.videoDataFromDatabase[videoId]) 
+                || videoData[videoId];
+            
+            if (!video) {
+                console.error('Video not found:', videoId);
+                return;
+            }
 
             document.getElementById('detailCategory').textContent = video.category;
             document.getElementById('detailTitle').textContent = video.title;
             document.getElementById('detailDuration').textContent = video.duration;
-            document.getElementById('detailAbout').innerHTML = video.about;
+            document.getElementById('detailAbout').innerHTML = video.about || video.summary;
 
             const topicsContainer = document.getElementById('detailTopics');
             topicsContainer.innerHTML = '';
@@ -5210,6 +5108,31 @@
                 tag.textContent = topic;
                 topicsContainer.appendChild(tag);
             });
+
+            // Update video player with Loom embed
+            const videoPlayerContainer = document.querySelector('.video-player-container');
+            const embedUrl = video.videoUrl || video.loom_embed_url;
+            
+            if (embedUrl) {
+                videoPlayerContainer.innerHTML = `
+                    <div style="position: relative; padding-bottom: 57.37%; height: 0;">
+                        <iframe 
+                            src="${embedUrl}" 
+                            frameborder="0" 
+                            webkitallowfullscreen 
+                            mozallowfullscreen 
+                            allowfullscreen 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                        </iframe>
+                    </div>
+                `;
+            } else {
+                videoPlayerContainer.innerHTML = `
+                    <div class="video-player-placeholder">
+                        <div class="video-player-text">Video embed URL not available</div>
+                    </div>
+                `;
+            }
 
             navigateToPage('videoDetail');
         }
@@ -5369,6 +5292,395 @@
             document.getElementById('adminUserManagementSection').classList.remove('active');
             document.querySelector('.admin-content').style.display = 'block';
         }
+
+        // ========== MEDIA MANAGEMENT FUNCTIONS ==========
+        
+        // Show media management section
+        function showMediaManagement() {
+            console.log('🎬 showMediaManagement called');
+            
+            const adminContent = document.querySelector('.admin-content');
+            const mediaMgmtSection = document.getElementById('adminMediaManagementSection');
+            
+            if (!adminContent || !mediaMgmtSection) {
+                console.error('❌ Required elements not found');
+                return;
+            }
+            
+            adminContent.style.display = 'none';
+            mediaMgmtSection.classList.add('active');
+            
+            loadVideosFromDatabase();
+        }
+
+        // Hide media management section
+        function hideMediaManagement() {
+            document.getElementById('adminMediaManagementSection').classList.remove('active');
+            document.querySelector('.admin-content').style.display = 'block';
+        }
+
+        // Load videos from Supabase
+        async function loadVideosFromDatabase() {
+            if (!supabase) {
+                console.error('Supabase not initialized');
+                return;
+            }
+
+            const videoList = document.getElementById('videoLibraryList');
+            videoList.innerHTML = '<div class="recent-item" style="justify-content: center; padding: 30px; color: rgba(255,255,255,0.4);">Loading videos...</div>';
+
+            try {
+                const { data: videos, error } = await supabase
+                    .from('videos')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (!videos || videos.length === 0) {
+                    videoList.innerHTML = '<div class="recent-item" style="justify-content: center; padding: 30px; color: rgba(255,255,255,0.4);">No videos yet. Add your first video above!</div>';
+                    document.getElementById('adminVideoCount').textContent = '0 videos';
+                    return;
+                }
+
+                // Update video count in admin dashboard
+                document.getElementById('adminVideoCount').textContent = `${videos.length} video${videos.length !== 1 ? 's' : ''}`;
+
+                // Display videos
+                videoList.innerHTML = videos.map(video => `
+                    <div class="recent-item" style="display: flex; justify-content: space-between; align-items: center; padding: 16px;">
+                        <div style="flex: 1;">
+                            <div class="recent-title">${video.title}</div>
+                            <div class="recent-time" style="margin-top: 4px;">
+                                <span style="color: rgba(255,215,0,0.8);">${video.category}</span> • 
+                                ${video.duration} min • 
+                                ${video.views || 0} views
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button 
+                                class="admin-btn" 
+                                style="padding: 8px 16px; font-size: 14px;"
+                                onclick="editVideo(${video.id})">
+                                ✏️ Edit
+                            </button>
+                            <button 
+                                class="admin-btn" 
+                                style="padding: 8px 16px; font-size: 14px; background: rgba(220,38,38,0.2); border-color: rgba(220,38,38,0.3);"
+                                onclick="deleteVideo(${video.id}, '${video.title.replace(/'/g, "\\'")}')">
+                                🗑️ Delete
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error('Error loading videos:', error);
+                videoList.innerHTML = '<div class="recent-item" style="justify-content: center; padding: 30px; color: rgba(220,38,38,0.8);">Error loading videos. Please try again.</div>';
+            }
+        }
+
+        // Add new video
+        async function addNewVideo(event) {
+            event.preventDefault();
+
+            if (!supabase) {
+                alert('Database not initialized');
+                return;
+            }
+
+            const btn = document.getElementById('addVideoBtn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Adding...';
+            btn.disabled = true;
+
+            try {
+                // Get form values
+                const title = document.getElementById('videoTitle').value.trim();
+                const category = document.getElementById('videoCategory').value;
+                const duration = document.getElementById('videoDuration').value.trim();
+                const loomUrl = document.getElementById('videoLoomUrl').value.trim();
+                const summary = document.getElementById('videoSummary').value.trim();
+                const topicsInput = document.getElementById('videoTopics').value.trim();
+                
+                // Parse topics
+                const topics = topicsInput.split(',').map(t => t.trim()).filter(t => t);
+
+                // Validate Loom URL
+                if (!loomUrl.includes('loom.com/embed/')) {
+                    alert('Please enter a valid Loom embed URL (should contain loom.com/embed/)');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    return;
+                }
+
+                // Generate unique video ID
+                const videoId = 'video-' + Date.now();
+
+                // Insert into database
+                const { data, error } = await supabase
+                    .from('videos')
+                    .insert([{
+                        video_id: videoId,
+                        title: title,
+                        category: category,
+                        duration: duration,
+                        loom_embed_url: loomUrl,
+                        summary: summary,
+                        topics: topics,
+                        views: 0
+                    }])
+                    .select();
+
+                if (error) throw error;
+
+                // Success!
+                alert('✅ Video added successfully!');
+                
+                // Clear form
+                document.getElementById('addVideoForm').reset();
+                
+                // Reload video list
+                await loadVideosFromDatabase();
+                
+                // Reload video library page if user is viewing it
+                await loadVideoLibrary();
+
+            } catch (error) {
+                console.error('Error adding video:', error);
+                alert('Error adding video: ' + error.message);
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Edit video
+        async function editVideo(videoId) {
+            if (!supabase) {
+                alert('Database not initialized');
+                return;
+            }
+
+            try {
+                // Get video data
+                const { data: video, error } = await supabase
+                    .from('videos')
+                    .select('*')
+                    .eq('id', videoId)
+                    .single();
+
+                if (error) throw error;
+
+                // Populate form
+                document.getElementById('videoTitle').value = video.title;
+                document.getElementById('videoCategory').value = video.category;
+                document.getElementById('videoDuration').value = video.duration;
+                document.getElementById('videoLoomUrl').value = video.loom_embed_url;
+                document.getElementById('videoSummary').value = video.summary;
+                document.getElementById('videoTopics').value = video.topics.join(', ');
+
+                // Change form to update mode
+                const form = document.getElementById('addVideoForm');
+                const btn = document.getElementById('addVideoBtn');
+                
+                btn.textContent = '💾 Update Video';
+                
+                // Remove existing submit handler and add update handler
+                form.onsubmit = async (e) => {
+                    e.preventDefault();
+                    await updateVideo(videoId);
+                };
+
+                // Scroll to form
+                document.querySelector('.send-announcement-card').scrollIntoView({ behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Error loading video:', error);
+                alert('Error loading video: ' + error.message);
+            }
+        }
+
+        // Update video
+        async function updateVideo(videoId) {
+            if (!supabase) {
+                alert('Database not initialized');
+                return;
+            }
+
+            const btn = document.getElementById('addVideoBtn');
+            btn.textContent = 'Updating...';
+            btn.disabled = true;
+
+            try {
+                // Get form values
+                const title = document.getElementById('videoTitle').value.trim();
+                const category = document.getElementById('videoCategory').value;
+                const duration = document.getElementById('videoDuration').value.trim();
+                const loomUrl = document.getElementById('videoLoomUrl').value.trim();
+                const summary = document.getElementById('videoSummary').value.trim();
+                const topicsInput = document.getElementById('videoTopics').value.trim();
+                
+                // Parse topics
+                const topics = topicsInput.split(',').map(t => t.trim()).filter(t => t);
+
+                // Update in database
+                const { data, error } = await supabase
+                    .from('videos')
+                    .update({
+                        title: title,
+                        category: category,
+                        duration: duration,
+                        loom_embed_url: loomUrl,
+                        summary: summary,
+                        topics: topics,
+                        updated_at: new Date().toISOString()
+                    })
+                    .eq('id', videoId)
+                    .select();
+
+                if (error) throw error;
+
+                // Success!
+                alert('✅ Video updated successfully!');
+                
+                // Reset form to add mode
+                resetVideoForm();
+                
+                // Reload video list
+                await loadVideosFromDatabase();
+                
+                // Reload video library page
+                await loadVideoLibrary();
+
+            } catch (error) {
+                console.error('Error updating video:', error);
+                alert('Error updating video: ' + error.message);
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        // Delete video
+        async function deleteVideo(videoId, videoTitle) {
+            if (!confirm(`Are you sure you want to delete "${videoTitle}"? This cannot be undone.`)) {
+                return;
+            }
+
+            if (!supabase) {
+                alert('Database not initialized');
+                return;
+            }
+
+            try {
+                const { error } = await supabase
+                    .from('videos')
+                    .delete()
+                    .eq('id', videoId);
+
+                if (error) throw error;
+
+                alert('✅ Video deleted successfully!');
+                
+                // Reload video list
+                await loadVideosFromDatabase();
+                
+                // Reload video library page
+                await loadVideoLibrary();
+
+            } catch (error) {
+                console.error('Error deleting video:', error);
+                alert('Error deleting video: ' + error.message);
+            }
+        }
+
+        // Reset video form to add mode
+        function resetVideoForm() {
+            const form = document.getElementById('addVideoForm');
+            const btn = document.getElementById('addVideoBtn');
+            
+            form.reset();
+            btn.textContent = '➕ Add Video to Library';
+            form.onsubmit = addNewVideo;
+        }
+
+        // Load video library from database (for the Video Library page)
+        async function loadVideoLibrary() {
+            if (!supabase) {
+                console.log('Supabase not initialized, using hardcoded data');
+                return;
+            }
+
+            try {
+                const { data: videos, error } = await supabase
+                    .from('videos')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (!videos || videos.length === 0) {
+                    console.log('No videos in database');
+                    return;
+                }
+
+                // Convert database videos to videoData format
+                const videoDataFromDB = {};
+                videos.forEach(video => {
+                    videoDataFromDB[video.video_id] = {
+                        category: video.category,
+                        title: video.title,
+                        duration: video.duration,
+                        videoUrl: video.loom_embed_url,
+                        about: video.summary,
+                        topics: video.topics,
+                        views: video.views || 0
+                    };
+                });
+
+                // Update global videoData
+                window.videoDataFromDatabase = videoDataFromDB;
+
+                // Update video grid
+                updateVideoGrid(videos);
+
+            } catch (error) {
+                console.error('Error loading video library:', error);
+            }
+        }
+
+        // Update video grid HTML
+        function updateVideoGrid(videos) {
+            const videoGrid = document.querySelector('.video-grid');
+            if (!videoGrid) return;
+
+            if (videos.length === 0) {
+                videoGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.4);">No videos available yet.</div>';
+                return;
+            }
+
+            videoGrid.innerHTML = videos.map(video => `
+                <div class="video-card" onclick="showVideoDetail('${video.video_id}')">
+                    <div class="video-thumbnail">
+                        <div class="video-play-btn"></div>
+                        <div class="video-duration">⏱ ${video.duration} min</div>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-category">${video.category}</span>
+                        <h3 class="video-title">${video.title}</h3>
+                        <p class="video-description">${video.summary.substring(0, 120)}${video.summary.length > 120 ? '...' : ''}</p>
+                        <div class="video-meta">
+                            <span>⏱ ${video.duration} min</span>
+                            <span>•</span>
+                            <span>📄 Members Only</span>
+                            ${video.views ? `<span>•</span><span>${video.views} views</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ========== END MEDIA MANAGEMENT FUNCTIONS ==========
 
         // Load users from Firebase
         async function loadUsers() {
@@ -6012,14 +6324,14 @@
                             webkitallowfullscreen 
                             mozallowfullscreen 
                             allowfullscreen 
-                            style="width: 100%; height: 400px;">
+                            style="width: 100%; height: 320px;">
                         </iframe>
                     ` : ''}
                     <div class="link-preview-content">
                         <div class="link-preview-title">🎥 Loom Video</div>
                         <a href="${url}" target="_blank" class="link-preview-url">
                             <span>🔗</span>
-                            <span>loom.com</span>
+                            <span>Watch on loom.com</span>
                         </a>
                     </div>
                 </div>
@@ -6041,7 +6353,7 @@
                     ${videoId ? `
                         <iframe 
                             width="100%" 
-                            height="400" 
+                            height="320" 
                             src="https://www.youtube.com/embed/${videoId}" 
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -6052,7 +6364,7 @@
                         <div class="link-preview-title">▶️ YouTube Video</div>
                         <a href="${url}" target="_blank" class="link-preview-url">
                             <span>🔗</span>
-                            <span>youtube.com</span>
+                            <span>Watch on youtube.com</span>
                         </a>
                     </div>
                 </div>
@@ -6388,6 +6700,13 @@
                     <h3>User Management</h3>
                     <p>Manage client accounts and permissions</p>
                     <div class="admin-stat" id="adminUserCount">Loading...</div>
+                </div>
+
+                <div class="admin-card" onclick="showMediaManagement()">
+                    <div class="admin-card-icon">🎬</div>
+                    <h3>Media Management</h3>
+                    <p>Add and manage video library content</p>
+                    <div class="admin-stat" id="adminVideoCount">Loading...</div>
                 </div>
                 
                 <div class="admin-card">
@@ -6778,6 +7097,115 @@
 
                         <button type="submit" class="btn-primary">Create Profile</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Media Management Section -->
+    <div class="admin-user-management-section" id="adminMediaManagementSection">
+        <div class="admin-announcements-header">
+            <button class="admin-back-btn" onclick="hideMediaManagement()">← Back to Dashboard</button>
+            <h2>📹 Media Management</h2>
+        </div>
+
+        <div class="admin-announcements-content">
+            <!-- Add New Video Form -->
+            <div class="send-announcement-card">
+                <h3>🎬 Add New Video</h3>
+                <form id="addVideoForm" onsubmit="addNewVideo(event)">
+                    <div class="form-group">
+                        <label for="videoTitle">Video Title</label>
+                        <input 
+                            type="text" 
+                            id="videoTitle" 
+                            class="form-input" 
+                            placeholder="e.g., Weekly Trading Recap..." 
+                            required
+                        />
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="videoCategory">Category</label>
+                            <select class="form-select" id="videoCategory" required>
+                                <option value="">Select category...</option>
+                                <option value="Performance Updates">Performance Updates</option>
+                                <option value="Getting Started">Getting Started</option>
+                                <option value="Strategy">Strategy</option>
+                                <option value="Risk Management">Risk Management</option>
+                                <option value="Analysis">Analysis</option>
+                                <option value="Mindset">Mindset</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Market Updates">Market Updates</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="videoDuration">Duration (minutes)</label>
+                            <input 
+                                type="text" 
+                                id="videoDuration" 
+                                class="form-input" 
+                                placeholder="e.g., 22" 
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="videoLoomUrl">Loom Embed URL</label>
+                        <input 
+                            type="url" 
+                            id="videoLoomUrl" 
+                            class="form-input" 
+                            placeholder="https://www.loom.com/embed/..." 
+                            required
+                        />
+                        <small style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; display: block;">
+                            Paste the Loom embed URL (starts with https://www.loom.com/embed/)
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="videoSummary">Summary / Description</label>
+                        <textarea 
+                            id="videoSummary" 
+                            class="form-input" 
+                            rows="4" 
+                            placeholder="Describe what viewers will learn in this video..." 
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="videoTopics">Topics (comma-separated)</label>
+                        <input 
+                            type="text" 
+                            id="videoTopics" 
+                            class="form-input" 
+                            placeholder="e.g., VoodooBot, PropBot, Risk Management" 
+                            required
+                        />
+                        <small style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; display: block;">
+                            Separate topics with commas
+                        </small>
+                    </div>
+
+                    <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%;" id="addVideoBtn">
+                        ➕ Add Video to Library
+                    </button>
+                </form>
+            </div>
+
+            <!-- Video List -->
+            <div class="recent-announcements-card">
+                <h3>Video Library (Database)</h3>
+                <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 8px;">Manage all videos in the library</p>
+                <div id="videoLibraryList" class="recent-list">
+                    <div class="recent-item" style="justify-content: center; padding: 30px; color: rgba(255,255,255,0.4);">
+                        Loading videos...
+                    </div>
                 </div>
             </div>
         </div>
