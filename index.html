@@ -63,6 +63,86 @@
             opacity: 0.8;
         }
 
+        /* Mobile Blocker Screen */
+        .mobile-blocker {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-blocker.active {
+            display: flex;
+        }
+
+        .mobile-blocker-content {
+            text-align: center;
+            padding: 40px;
+            max-width: 500px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .mobile-blocker-icon {
+            margin-bottom: 32px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .mobile-blocker-title {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD700, #FFC107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+        }
+
+        .mobile-blocker-message {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .mobile-blocker-submessage {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .mobile-blocker-devices {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 24px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+        }
+
+        .device-icon {
+            font-size: 48px;
+        }
+
+        .device-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         /* Login Screen */
         .login-screen {
             position: fixed;
@@ -258,6 +338,10 @@
             letter-spacing: 1px;
             box-shadow: 0 10px 40px -10px rgba(255, 215, 0, 0.7);
             transition: all 0.3s ease;
+            min-height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .login-button #loginText {
@@ -265,7 +349,17 @@
             align-items: center;
             justify-content: center;
             min-width: 160px;
-            min-height: 22px;
+            height: 22px;
+        }
+
+        .login-button .loading-spinner {
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(10, 10, 10, 0.2);
+            border-top-color: #0a0a0a;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0;
         }
 
         .login-button:hover {
@@ -766,7 +860,7 @@
             overflow: hidden;
             margin-bottom: 40px;
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 48%;
         }
 
         .video-player-placeholder {
@@ -928,6 +1022,110 @@
 
         .stat-change.positive {
             color: var(--success-green);
+        }
+
+        /* Algorithm Stats Preview */
+        .algo-stats-preview {
+            margin-top: 60px;
+            padding: 32px;
+            background: rgba(26, 26, 26, 0.6);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .algo-stats-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.15);
+        }
+
+        .algo-stats-title h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFD700;
+            margin: 0 0 8px 0;
+        }
+
+        .algo-stats-title p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+        }
+
+        .view-all-btn {
+            padding: 12px 24px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: #FFD700;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .view-all-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateX(4px);
+        }
+
+        .algo-stats-feed {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 12px;
+        }
+
+        .algo-stats-feed::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .algo-stats-feed::-webkit-scrollbar-track {
+            background: rgba(26, 26, 26, 0.4);
+            border-radius: 4px;
+        }
+
+        .algo-stats-feed::-webkit-scrollbar-thumb {
+            background: rgba(255, 215, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .algo-stats-feed::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 215, 0, 0.5);
+        }
+
+        .loading-stats {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 215, 0, 0.2);
+            border-top-color: #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-stats p {
+            font-size: 15px;
+            margin: 0;
         }
 
         /* Responsive */
@@ -3531,6 +3729,261 @@
         }
 
         /* ========================================
+           PREFERENCES MODAL STYLES
+           ======================================== */
+        
+        .preference-section {
+            padding: 20px;
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 12px;
+        }
+
+        .preference-item {
+            margin-bottom: 16px;
+        }
+
+        .preference-label {
+            margin-bottom: 12px;
+        }
+
+        .preference-label strong {
+            color: #FFFFFF;
+            font-size: 15px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            gap: 12px;
+        }
+
+        .theme-option {
+            flex: 1;
+            padding: 12px 20px;
+            background: rgba(26, 26, 26, 0.6);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .theme-option:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.4);
+            color: #FFFFFF;
+        }
+
+        .theme-option.active {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.6);
+            color: #FFD700;
+        }
+
+        /* Zoom Slider */
+        .zoom-slider-container {
+            margin-top: 12px;
+        }
+
+        .zoom-slider {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .zoom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .zoom-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 3px 12px rgba(255, 215, 0, 0.6);
+        }
+
+        .zoom-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .zoom-slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 3px 12px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Zoom Presets */
+        .zoom-presets {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .zoom-preset-btn {
+            padding: 8px 12px;
+            background: rgba(26, 26, 26, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .zoom-preset-btn:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.4);
+            color: #FFFFFF;
+        }
+
+        .zoom-preset-btn.active {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.5);
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        /* ========================================
+           STATS MANAGEMENT STYLES
+           ======================================== */
+        
+        .stats-card-editor {
+            padding: 20px;
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stats-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .stats-preview-card {
+            padding: 20px;
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+        }
+
+        .stats-preview-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .stats-preview-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #FFFFFF;
+            background: linear-gradient(135deg, #FFFFFF, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .stats-preview-change {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--success-green);
+        }
+
+        /* ========================================
+           MAINTENANCE PAGE STYLES
+           ======================================== */
+        
+        .maintenance-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .maintenance-icon {
+            font-size: 120px;
+            margin-bottom: 32px;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .maintenance-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD700, #FFC107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+        }
+
+        .maintenance-message {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 16px;
+            font-weight: 500;
+        }
+
+        .maintenance-submessage {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .maintenance-badge {
+            display: inline-block;
+            padding: 12px 32px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 50px;
+            color: #FFD700;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ========================================
            SUPPORT PAGE STYLES
            ======================================== */
         
@@ -3929,6 +4382,26 @@
     </div>
 
     <!-- Login Screen -->
+    <!-- Mobile Blocker Screen -->
+    <div class="mobile-blocker" id="mobileBlocker">
+        <div class="mobile-blocker-content">
+            <div class="mobile-blocker-icon">
+                <img src="PIlogo.png" alt="Profit Insider Logo" style="width: 80px; height: 80px; object-fit: contain;">
+            </div>
+            <h1 class="mobile-blocker-title">Desktop Only</h1>
+            <p class="mobile-blocker-message">
+                Profit Insider is optimized for desktop browsers only.
+            </p>
+            <p class="mobile-blocker-submessage">
+                Please access this platform from a desktop computer or laptop for the best experience.
+            </p>
+            <div class="mobile-blocker-devices">
+                <div class="device-icon">💻</div>
+                <div class="device-text">Desktop</div>
+            </div>
+        </div>
+    </div>
+
     <div class="login-screen" id="loginScreen">
         <div class="login-card" id="loginCard">
             <div class="login-logo">
@@ -3992,9 +4465,9 @@
                 <ul class="nav-menu">
                     <li class="nav-item active" data-page="home">Home</li>
                     <li class="nav-item" data-page="videos">Video Library</li>
-                    <li class="nav-item" data-page="announcements">Announcements</li>
-                    <li class="nav-item" data-page="analytics">Analytics</li>
-                    <li class="nav-item" data-page="portfolio">Portfolio</li>
+                    <li class="nav-item" data-page="announcements">PiChat</li>
+                    <li class="nav-item" data-page="analytics">Analytics <span style="font-size: 11px; opacity: 0.6;">(Under Maintenance)</span></li>
+                    <li class="nav-item" data-page="portfolio">Portfolio <span style="font-size: 11px; opacity: 0.6;">(Under Maintenance)</span></li>
                 </ul>
                 <div class="nav-right">
                     <div class="account-widget" id="accountWidget">
@@ -4007,9 +4480,7 @@
                             </div>
                         </div>
                         <div class="account-dropdown">
-                            <div class="dropdown-item">👤 Profile Settings</div>
-                            <div class="dropdown-item">⚙️ Preferences</div>
-                            <div class="dropdown-item">📊 Performance</div>
+                            <div class="dropdown-item" onclick="openPreferences()">⚙️ Preferences</div>
                             <div class="dropdown-item logout" onclick="logout()">🚪 Log Out</div>
                         </div>
                     </div>
@@ -4021,7 +4492,7 @@
         <div class="main-content">
             <!-- Home Page -->
             <div class="page active" id="home">
-                <h1 class="page-title">Welcome Back</h1>
+                <h1 class="page-title">Welcome Back, <span id="userFirstName">Steele</span></h1>
                 <p class="page-subtitle">Your elite algorithmic trading dashboard</p>
 
                 <div class="stats-grid">
@@ -4044,6 +4515,27 @@
                         <div class="stat-label">Success Rate</div>
                         <div class="stat-value">71.8%</div>
                         <div class="stat-change positive">↑ 2.3%</div>
+                    </div>
+                </div>
+
+                <!-- Algorithm Stats Preview Section -->
+                <div class="algo-stats-preview">
+                    <div class="algo-stats-header">
+                        <div class="algo-stats-title">
+                            <h2>📊 Daily Algorithm Stats</h2>
+                            <p>Latest performance updates from #algorithm-stats</p>
+                        </div>
+                        <button class="view-all-btn" onclick="navigateToPage('announcements'); setTimeout(() => switchChannel('algo-stats'), 100)">
+                            View All Updates →
+                        </button>
+                    </div>
+                    
+                    <div class="algo-stats-feed" id="algoStatsFeed">
+                        <!-- Algorithm stats messages will be loaded here -->
+                        <div class="loading-stats">
+                            <div class="loading-spinner"></div>
+                            <p>Loading latest stats...</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -4122,7 +4614,7 @@
                 </div>
             </div>
 
-            <!-- Announcements Page -->
+            <!-- PiChat Page -->
             <div class="page" id="announcements">
                 <div class="slack-container">
                     <!-- Left Sidebar - Channels -->
@@ -4131,7 +4623,7 @@
                             <h3>Profit Insider</h3>
                             <div class="workspace-status">
                                 <div class="status-dot"></div>
-                                <span>3 channels</span>
+                                <span>4 channels</span>
                             </div>
                         </div>
 
@@ -4148,6 +4640,11 @@
                             <button class="slack-channel-item" data-channel="algo-recaps" onclick="switchChannel('algo-recaps')">
                                 <span class="channel-hash">#</span>
                                 <span class="channel-name">algo-recaps</span>
+                            </button>
+                            
+                            <button class="slack-channel-item" data-channel="algo-stats" onclick="switchChannel('algo-stats')">
+                                <span class="channel-hash">#</span>
+                                <span class="channel-name">algorithm-stats</span>
                             </button>
                             
                             <button class="slack-channel-item" data-channel="algo-announcements" onclick="switchChannel('algo-announcements')">
@@ -4184,6 +4681,11 @@
                                 <div id="messages-algo-recaps"></div>
                             </div>
 
+                            <!-- Algorithm Stats Channel Messages -->
+                            <div class="slack-messages-container" id="slack-messages-algo-stats" style="display: none;">
+                                <div id="messages-algo-stats"></div>
+                            </div>
+
                             <!-- Algo Announcements Channel Messages -->
                             <div class="slack-messages-container" id="slack-messages-algo-announcements" style="display: none;">
                                 <div id="messages-algo-announcements"></div>
@@ -4201,60 +4703,33 @@
 
 
             <!-- Analytics Page -->
+            <!-- Analytics Page -->
             <div class="page" id="analytics">
-                <h1 class="page-title">Market Analytics</h1>
-                <p class="page-subtitle">Real-time performance metrics and trading insights</p>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-label">Total Return</div>
-                        <div class="stat-value">+32.4%</div>
-                        <div class="stat-change positive">↑ 4.8% this week</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Active Strategies</div>
-                        <div class="stat-value">15</div>
-                        <div class="stat-change positive">↑ 3 deployed</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Success Rate</div>
-                        <div class="stat-value">71.8%</div>
-                        <div class="stat-change positive">↑ 2.3%</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Portfolio Value</div>
-                        <div class="stat-value">$1.2M</div>
-                        <div class="stat-change positive">↑ $86.4K</div>
-                    </div>
+                <div class="maintenance-container">
+                    <div class="maintenance-icon">🔧</div>
+                    <h1 class="maintenance-title">Under Maintenance</h1>
+                    <p class="maintenance-message">
+                        We're currently upgrading the Analytics dashboard to bring you enhanced features and improved performance metrics.
+                    </p>
+                    <p class="maintenance-submessage">
+                        This section will be available soon. Thank you for your patience.
+                    </p>
+                    <div class="maintenance-badge">Coming Soon</div>
                 </div>
             </div>
 
             <!-- Portfolio Page -->
             <div class="page" id="portfolio">
-                <h1 class="page-title">Portfolio Command</h1>
-                <p class="page-subtitle">Strategic oversight of your asset allocation</p>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-label">Total Assets</div>
-                        <div class="stat-value">$1.2M</div>
-                        <div class="stat-change positive">↑ $34.2K today</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Equity Holdings</div>
-                        <div class="stat-value">$890K</div>
-                        <div class="stat-change positive">↑ 3.8%</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Available Cash</div>
-                        <div class="stat-value">$310K</div>
-                        <div class="stat-change">Reserve Balance</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Unrealized Gains</div>
-                        <div class="stat-value">+$124K</div>
-                        <div class="stat-change positive">↑ 16.2%</div>
-                    </div>
+                <div class="maintenance-container">
+                    <div class="maintenance-icon">🔧</div>
+                    <h1 class="maintenance-title">Under Maintenance</h1>
+                    <p class="maintenance-message">
+                        We're currently upgrading the Portfolio dashboard to bring you enhanced features and improved portfolio tracking.
+                    </p>
+                    <p class="maintenance-submessage">
+                        This section will be available soon. Thank you for your patience.
+                    </p>
+                    <div class="maintenance-badge">Coming Soon</div>
                 </div>
             </div>
 
@@ -4608,6 +5083,56 @@
     <script>
         // Wait for DOM and Supabase library to be ready
         document.addEventListener('DOMContentLoaded', function() {
+            // ============================================
+            // MOBILE DEVICE DETECTION & BLOCKING
+            // ============================================
+            function isMobileDevice() {
+                // Check user agent for mobile devices
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                
+                // Mobile device patterns
+                const mobilePatterns = [
+                    /Android/i,
+                    /webOS/i,
+                    /iPhone/i,
+                    /iPad/i,
+                    /iPod/i,
+                    /BlackBerry/i,
+                    /Windows Phone/i,
+                    /Mobile/i
+                ];
+                
+                // Check if any pattern matches
+                const isMobileUA = mobilePatterns.some(pattern => userAgent.match(pattern));
+                
+                // Also check screen size as a backup (less than 768px width is typically mobile)
+                const isSmallScreen = window.innerWidth < 768;
+                
+                // Check touch capability (most mobiles have touch)
+                const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+                
+                return isMobileUA || (isSmallScreen && hasTouch);
+            }
+            
+            // Check if mobile and block access
+            if (isMobileDevice()) {
+                console.log('📱 Mobile device detected - blocking access');
+                const mobileBlocker = document.getElementById('mobileBlocker');
+                const loginScreen = document.getElementById('loginScreen');
+                
+                if (mobileBlocker) {
+                    mobileBlocker.classList.add('active');
+                }
+                if (loginScreen) {
+                    loginScreen.style.display = 'none';
+                }
+                
+                // Prevent any further execution
+                return;
+            }
+            
+            console.log('💻 Desktop device detected - allowing access');
+            
             // Check if Supabase library is loaded
             if (typeof window.supabase === 'undefined') {
                 console.error('❌ Supabase library not loaded! Please check your internet connection.');
@@ -4831,7 +5356,7 @@
 
             if (username && password) {
                 // Check for admin credentials
-                if (username.toUpperCase() === 'ADMIN' && password.toUpperCase() === 'ADMIN') {
+                if (username === 'admin2151' && password === 'Logan0929!') {
                     // Admin login - skip intro, go directly to admin page
                     loginText.innerHTML = '<div class="loading-spinner"></div>';
                     loginBtn.classList.add('loading');
@@ -4949,6 +5474,7 @@
         function updateUserDisplay(user) {
             const userName = document.getElementById('userName');
             const userInitials = document.getElementById('userInitials');
+            const userFirstName = document.getElementById('userFirstName');
             
             if (userName) {
                 userName.textContent = user.name || 'Algorithm Client';
@@ -4961,6 +5487,12 @@
                     ? nameParts[0][0] + nameParts[nameParts.length - 1][0]
                     : user.name.substring(0, 2);
                 userInitials.textContent = initials.toUpperCase();
+            }
+            
+            if (userFirstName && user.name) {
+                // Get first name from full name
+                const firstName = user.name.split(' ')[0];
+                userFirstName.textContent = firstName;
             }
         }
 
@@ -5026,6 +5558,12 @@
                 
                 // Load video library from database
                 loadVideoLibrary();
+                
+                // Load homepage statistics
+                loadHomepageStats();
+                
+                // Initialize admin video count
+                initializeAdminVideoCount();
             }, 8000);
         }
 
@@ -5075,6 +5613,11 @@
                 loadVideoLibrary();
             }
 
+            // Load homepage stats when navigating to home page
+            if (pageName === 'home') {
+                loadHomepageStats();
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -5115,7 +5658,7 @@
             
             if (embedUrl) {
                 videoPlayerContainer.innerHTML = `
-                    <div style="position: relative; padding-bottom: 57.37%; height: 0;">
+                    <div style="position: relative; padding-bottom: 48%; height: 0;">
                         <iframe 
                             src="${embedUrl}" 
                             frameborder="0" 
@@ -5148,6 +5691,102 @@
                 loginText.textContent = 'Access Platform';
             }, 600);
         }
+
+        // ============================================
+        // PREFERENCES FUNCTIONS
+        // ============================================
+
+        // Open preferences modal
+        function openPreferences() {
+            const modal = document.getElementById('preferencesModal');
+            modal.classList.add('active');
+            
+            // Close account dropdown
+            document.getElementById('accountWidget').classList.remove('open');
+            
+            // Load saved preferences
+            loadPreferences();
+        }
+
+        // Close preferences modal
+        function closePreferences() {
+            document.getElementById('preferencesModal').classList.remove('active');
+        }
+
+        // Load saved preferences from localStorage
+        function loadPreferences() {
+            // Load theme
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme, false);
+            
+            // Load zoom
+            const savedZoom = localStorage.getItem('zoom') || '100';
+            setZoom(parseInt(savedZoom), false);
+        }
+
+        // Set theme (dark or light)
+        function setTheme(theme, save = true) {
+            const darkBtn = document.getElementById('darkModeBtn');
+            const lightBtn = document.getElementById('lightModeBtn');
+            
+            if (theme === 'dark') {
+                darkBtn.classList.add('active');
+                lightBtn.classList.remove('active');
+                // Apply dark theme (currently active)
+                document.documentElement.style.setProperty('--background', '#0a0a0a');
+                document.documentElement.style.setProperty('--text', '#FFFFFF');
+            } else {
+                darkBtn.classList.remove('active');
+                lightBtn.classList.add('active');
+                // Apply light theme
+                document.documentElement.style.setProperty('--background', '#FFFFFF');
+                document.documentElement.style.setProperty('--text', '#000000');
+            }
+            
+            if (save) {
+                localStorage.setItem('theme', theme);
+            }
+        }
+
+        // Update zoom value display
+        function updateZoom(value) {
+            document.getElementById('zoomValue').textContent = value + '%';
+            applyZoom(value);
+            
+            // Update active preset button
+            const presetBtns = document.querySelectorAll('.zoom-preset-btn');
+            presetBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Highlight preset if value matches
+            const matchingPreset = document.querySelector(`[onclick="setZoom(${value})"]`);
+            if (matchingPreset) {
+                matchingPreset.classList.add('active');
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('zoom', value);
+        }
+
+        // Set zoom to specific value
+        function setZoom(value, updateSlider = true) {
+            if (updateSlider) {
+                document.getElementById('zoomSlider').value = value;
+            }
+            updateZoom(value);
+        }
+
+        // Apply zoom to document
+        function applyZoom(value) {
+            const zoomFactor = value / 100;
+            document.documentElement.style.fontSize = (16 * zoomFactor) + 'px';
+        }
+
+        // Expose to global scope
+        window.openPreferences = openPreferences;
+        window.closePreferences = closePreferences;
+        window.setTheme = setTheme;
+        window.updateZoom = updateZoom;
+        window.setZoom = setZoom;
 
         // Open chat support widget
         function openChatSupport() {
@@ -5302,22 +5941,63 @@
             const adminContent = document.querySelector('.admin-content');
             const mediaMgmtSection = document.getElementById('adminMediaManagementSection');
             
+            console.log('Admin content:', adminContent);
+            console.log('Media section:', mediaMgmtSection);
+            
             if (!adminContent || !mediaMgmtSection) {
                 console.error('❌ Required elements not found');
+                console.error('adminContent:', adminContent);
+                console.error('mediaMgmtSection:', mediaMgmtSection);
                 return;
             }
             
             adminContent.style.display = 'none';
             mediaMgmtSection.classList.add('active');
             
+            console.log('✅ Media section should be visible');
+            console.log('Section display:', window.getComputedStyle(mediaMgmtSection).display);
+            
             loadVideosFromDatabase();
         }
+        
+        // Expose to global scope
+        window.showMediaManagement = showMediaManagement;
 
         // Hide media management section
         function hideMediaManagement() {
             document.getElementById('adminMediaManagementSection').classList.remove('active');
             document.querySelector('.admin-content').style.display = 'block';
         }
+        
+        // Expose to global scope
+        window.hideMediaManagement = hideMediaManagement;
+
+        // Initialize admin video count on dashboard load
+        async function initializeAdminVideoCount() {
+            if (!supabase) return;
+            
+            try {
+                const { count, error } = await supabase
+                    .from('videos')
+                    .select('*', { count: 'exact', head: true });
+                
+                if (error) throw error;
+                
+                const adminVideoCountEl = document.getElementById('adminVideoCount');
+                if (adminVideoCountEl) {
+                    adminVideoCountEl.textContent = `${count || 0} video${count !== 1 ? 's' : ''}`;
+                }
+            } catch (error) {
+                console.error('Error loading video count:', error);
+                const adminVideoCountEl = document.getElementById('adminVideoCount');
+                if (adminVideoCountEl) {
+                    adminVideoCountEl.textContent = 'Click to manage';
+                }
+            }
+        }
+        
+        // Expose to global scope
+        window.initializeAdminVideoCount = initializeAdminVideoCount;
 
         // Load videos from Supabase
         async function loadVideosFromDatabase() {
@@ -5680,7 +6360,219 @@
             `).join('');
         }
 
+        // Expose media management functions to global scope
+        window.addNewVideo = addNewVideo;
+        window.editVideo = editVideo;
+        window.updateVideo = updateVideo;
+        window.deleteVideo = deleteVideo;
+        window.resetVideoForm = resetVideoForm;
+        window.loadVideoLibrary = loadVideoLibrary;
+        window.loadVideosFromDatabase = loadVideosFromDatabase;
+
         // ========== END MEDIA MANAGEMENT FUNCTIONS ==========
+
+        // ========== STATS MANAGEMENT FUNCTIONS ==========
+        
+        // Show stats management section
+        function showStatsManagement() {
+            console.log('📊 showStatsManagement called');
+            
+            const adminContent = document.querySelector('.admin-content');
+            const statsMgmtSection = document.getElementById('adminStatsManagementSection');
+            
+            if (!adminContent || !statsMgmtSection) {
+                console.error('❌ Required elements not found');
+                return;
+            }
+            
+            adminContent.style.display = 'none';
+            statsMgmtSection.classList.add('active');
+            
+            loadCurrentStats();
+        }
+
+        // Hide stats management section
+        function hideStatsManagement() {
+            document.getElementById('adminStatsManagementSection').classList.remove('active');
+            document.querySelector('.admin-content').style.display = 'block';
+        }
+
+        // Load current stats from database
+        async function loadCurrentStats() {
+            if (!supabase) {
+                console.error('Supabase not initialized');
+                return;
+            }
+
+            try {
+                const { data: stats, error } = await supabase
+                    .from('homepage_stats')
+                    .select('*');
+
+                if (error) throw error;
+
+                if (stats && stats.length > 0) {
+                    stats.forEach(stat => {
+                        // Update form fields
+                        switch(stat.stat_key) {
+                            case 'total_return':
+                                document.getElementById('totalReturnValue').value = stat.main_value;
+                                document.getElementById('totalReturnChange').value = stat.change_text;
+                                document.getElementById('previewTotalReturn').textContent = stat.main_value;
+                                document.getElementById('previewTotalReturnChange').textContent = stat.change_text;
+                                break;
+                            case 'portfolio_value':
+                                document.getElementById('portfolioValue').value = stat.main_value;
+                                document.getElementById('portfolioChange').value = stat.change_text;
+                                document.getElementById('previewPortfolio').textContent = stat.main_value;
+                                document.getElementById('previewPortfolioChange').textContent = stat.change_text;
+                                break;
+                            case 'active_strategies':
+                                document.getElementById('activeStrategiesValue').value = stat.main_value;
+                                document.getElementById('activeStrategiesChange').value = stat.change_text;
+                                document.getElementById('previewStrategies').textContent = stat.main_value;
+                                document.getElementById('previewStrategiesChange').textContent = stat.change_text;
+                                break;
+                            case 'success_rate':
+                                document.getElementById('successRateValue').value = stat.main_value;
+                                document.getElementById('successRateChange').value = stat.change_text;
+                                document.getElementById('previewSuccessRate').textContent = stat.main_value;
+                                document.getElementById('previewSuccessRateChange').textContent = stat.change_text;
+                                break;
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Update homepage stats
+        async function updateHomeStats(event) {
+            event.preventDefault();
+
+            if (!supabase) {
+                alert('Database not initialized');
+                return;
+            }
+
+            const btn = document.getElementById('updateStatsBtn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Updating...';
+            btn.disabled = true;
+
+            try {
+                // Get form values
+                const statsToUpdate = [
+                    {
+                        stat_key: 'total_return',
+                        main_value: document.getElementById('totalReturnValue').value.trim(),
+                        change_text: document.getElementById('totalReturnChange').value.trim()
+                    },
+                    {
+                        stat_key: 'portfolio_value',
+                        main_value: document.getElementById('portfolioValue').value.trim(),
+                        change_text: document.getElementById('portfolioChange').value.trim()
+                    },
+                    {
+                        stat_key: 'active_strategies',
+                        main_value: document.getElementById('activeStrategiesValue').value.trim(),
+                        change_text: document.getElementById('activeStrategiesChange').value.trim()
+                    },
+                    {
+                        stat_key: 'success_rate',
+                        main_value: document.getElementById('successRateValue').value.trim(),
+                        change_text: document.getElementById('successRateChange').value.trim()
+                    }
+                ];
+
+                // Update each stat in database
+                for (const stat of statsToUpdate) {
+                    const { error } = await supabase
+                        .from('homepage_stats')
+                        .upsert({
+                            stat_key: stat.stat_key,
+                            main_value: stat.main_value,
+                            change_text: stat.change_text,
+                            updated_at: new Date().toISOString()
+                        }, {
+                            onConflict: 'stat_key'
+                        });
+
+                    if (error) throw error;
+                }
+
+                // Success!
+                alert('✅ Homepage statistics updated successfully!\n\nClients will see the new values on their dashboard.');
+                
+                // Reload preview
+                await loadCurrentStats();
+                
+                // Reload homepage stats for all clients
+                await loadHomepageStats();
+
+            } catch (error) {
+                console.error('Error updating stats:', error);
+                alert('Error updating statistics: ' + error.message);
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Load homepage stats (for client view)
+        async function loadHomepageStats() {
+            if (!supabase) return;
+
+            try {
+                const { data: stats, error } = await supabase
+                    .from('homepage_stats')
+                    .select('*');
+
+                if (error) throw error;
+
+                if (stats && stats.length > 0) {
+                    stats.forEach(stat => {
+                        switch(stat.stat_key) {
+                            case 'total_return':
+                                const totalReturnValue = document.querySelector('.stat-card:nth-child(1) .stat-value');
+                                const totalReturnChange = document.querySelector('.stat-card:nth-child(1) .stat-change');
+                                if (totalReturnValue) totalReturnValue.textContent = stat.main_value;
+                                if (totalReturnChange) totalReturnChange.textContent = stat.change_text;
+                                break;
+                            case 'portfolio_value':
+                                const portfolioValue = document.querySelector('.stat-card:nth-child(2) .stat-value');
+                                const portfolioChange = document.querySelector('.stat-card:nth-child(2) .stat-change');
+                                if (portfolioValue) portfolioValue.textContent = stat.main_value;
+                                if (portfolioChange) portfolioChange.textContent = stat.change_text;
+                                break;
+                            case 'active_strategies':
+                                const strategiesValue = document.querySelector('.stat-card:nth-child(3) .stat-value');
+                                const strategiesChange = document.querySelector('.stat-card:nth-child(3) .stat-change');
+                                if (strategiesValue) strategiesValue.textContent = stat.main_value;
+                                if (strategiesChange) strategiesChange.textContent = stat.change_text;
+                                break;
+                            case 'success_rate':
+                                const successValue = document.querySelector('.stat-card:nth-child(4) .stat-value');
+                                const successChange = document.querySelector('.stat-card:nth-child(4) .stat-change');
+                                if (successValue) successValue.textContent = stat.main_value;
+                                if (successChange) successChange.textContent = stat.change_text;
+                                break;
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading homepage stats:', error);
+            }
+        }
+
+        // Expose to global scope
+        window.showStatsManagement = showStatsManagement;
+        window.hideStatsManagement = hideStatsManagement;
+        window.updateHomeStats = updateHomeStats;
+        window.loadHomepageStats = loadHomepageStats;
+
+        // ========== END STATS MANAGEMENT FUNCTIONS ==========
 
         // Load users from Firebase
         async function loadUsers() {
@@ -5950,12 +6842,14 @@
             const channelNames = {
                 'general-updates': 'general-updates',
                 'algo-recaps': 'algo-recaps',
+                'algo-stats': 'algorithm-stats',
                 'algo-announcements': 'algo-announcements'
             };
             
             const channelDescriptions = {
                 'general-updates': 'Latest platform updates and announcements',
                 'algo-recaps': 'Daily algorithm performance recaps and insights',
+                'algo-stats': 'Real-time algorithm statistics and performance data',
                 'algo-announcements': 'Important algorithm updates and notifications'
             };
             
@@ -6113,6 +7007,81 @@
             loadChannelMessages('general-updates');
             // Also update recent announcements in admin panel
             loadRecentAnnouncements();
+            // Load algorithm stats for homepage
+            loadAlgorithmStatsPreview();
+        }
+
+        // Load algorithm stats preview for homepage
+        async function loadAlgorithmStatsPreview() {
+            if (!supabase) return;
+
+            const statsFeed = document.getElementById('algoStatsFeed');
+            if (!statsFeed) return;
+
+            try {
+                const { data: stats, error } = await supabase
+                    .from('announcements')
+                    .select('*')
+                    .eq('channel', 'algo-stats')
+                    .order('timestamp', { ascending: false })
+                    .limit(5); // Show last 5 stats posts
+
+                if (error) throw error;
+
+                if (!stats || stats.length === 0) {
+                    statsFeed.innerHTML = `
+                        <div class="loading-stats">
+                            <div style="font-size: 48px; opacity: 0.3; margin-bottom: 16px;">📊</div>
+                            <p>No algorithm stats posted yet</p>
+                            <p style="font-size: 13px; margin-top: 8px; opacity: 0.6;">Check back soon for daily updates</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Render stats messages
+                statsFeed.innerHTML = '';
+                stats.forEach(stat => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'slack-message';
+                    
+                    const timestamp = new Date(stat.timestamp);
+                    const timeString = timestamp.toLocaleString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    });
+
+                    messageDiv.innerHTML = `
+                        <div class="message-avatar">
+                            <div class="profile-icon-display">${stat.profile_icon || '💼'}</div>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-author">${stat.profile_name || 'Profit Insider Team'}</span>
+                                <span class="message-time">${timeString}</span>
+                            </div>
+                            <div class="message-body">
+                                <div class="message-title">${stat.title || ''}</div>
+                                <div class="message-text">${stat.message || ''}</div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    statsFeed.appendChild(messageDiv);
+                });
+
+            } catch (error) {
+                console.error('Error loading algorithm stats:', error);
+                statsFeed.innerHTML = `
+                    <div class="loading-stats">
+                        <p style="color: rgba(220, 38, 38, 0.8);">Error loading stats</p>
+                        <p style="font-size: 13px; margin-top: 8px;">Please try again later</p>
+                    </div>
+                `;
+            }
         }
 
         // Load recent announcements for admin panel
@@ -6668,6 +7637,9 @@
         window.filterFAQCategory = filterFAQCategory;
         window.searchFAQs = searchFAQs;
 
+        // Load saved preferences on page load
+        loadPreferences();
+
         }); // End of DOMContentLoaded wrapper
     </script>
 
@@ -6689,8 +7661,8 @@
             
             <div class="admin-grid">
                 <div class="admin-card" onclick="showAdminAnnouncements()">
-                    <div class="admin-card-icon">📢</div>
-                    <h3>Announcements</h3>
+                    <div class="admin-card-icon">💬</div>
+                    <h3>PiChat</h3>
                     <p>Send messages to all users</p>
                     <div class="admin-stat">Manage Updates</div>
                 </div>
@@ -6708,12 +7680,12 @@
                     <p>Add and manage video library content</p>
                     <div class="admin-stat" id="adminVideoCount">Loading...</div>
                 </div>
-                
-                <div class="admin-card">
+
+                <div class="admin-card" onclick="showStatsManagement()">
                     <div class="admin-card-icon">📊</div>
-                    <h3>Analytics</h3>
-                    <p>View platform performance metrics</p>
-                    <div class="admin-stat">98.7% Uptime</div>
+                    <h3>Stats Management</h3>
+                    <p>Update homepage statistics cards</p>
+                    <div class="admin-stat">4 Stats Cards</div>
                 </div>
                 
                 <div class="admin-card">
@@ -6822,6 +7794,7 @@
                                 <select id="announcementChannel" class="form-select">
                                     <option value="general-updates">📢 general-updates</option>
                                     <option value="algo-recaps">📊 algo-recaps</option>
+                                    <option value="algo-stats">📈 algorithm-stats</option>
                                     <option value="algo-announcements">🔔 algo-announcements</option>
                                 </select>
                             </div>
@@ -6993,6 +7966,279 @@
                 </div>
             </div>
         </div>
+
+        <!-- Media Management Section -->
+        <div class="admin-user-management-section" id="adminMediaManagementSection">
+            <div class="admin-announcements-header">
+                <button class="admin-back-btn" onclick="hideMediaManagement()">← Back to Dashboard</button>
+                <h2>📹 Media Management</h2>
+            </div>
+
+            <div class="admin-announcements-content">
+                <!-- Add New Video Form -->
+                <div class="send-announcement-card">
+                    <h3>🎬 Add New Video</h3>
+                    <form id="addVideoForm" onsubmit="addNewVideo(event)">
+                        <div class="form-group">
+                            <label for="videoTitle">Video Title</label>
+                            <input 
+                                type="text" 
+                                id="videoTitle" 
+                                class="form-input" 
+                                placeholder="e.g., Weekly Trading Recap..." 
+                                required
+                            />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="videoCategory">Category</label>
+                                <select class="form-select" id="videoCategory" required>
+                                    <option value="">Select category...</option>
+                                    <option value="Performance Updates">Performance Updates</option>
+                                    <option value="Getting Started">Getting Started</option>
+                                    <option value="Strategy">Strategy</option>
+                                    <option value="Risk Management">Risk Management</option>
+                                    <option value="Analysis">Analysis</option>
+                                    <option value="Mindset">Mindset</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Market Updates">Market Updates</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="videoDuration">Duration (minutes)</label>
+                                <input 
+                                    type="text" 
+                                    id="videoDuration" 
+                                    class="form-input" 
+                                    placeholder="e.g., 22" 
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="videoLoomUrl">Loom Embed URL</label>
+                            <input 
+                                type="url" 
+                                id="videoLoomUrl" 
+                                class="form-input" 
+                                placeholder="https://www.loom.com/embed/..." 
+                                required
+                            />
+                            <small style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; display: block;">
+                                Paste the Loom embed URL (starts with https://www.loom.com/embed/)
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="videoSummary">Summary / Description</label>
+                            <textarea 
+                                id="videoSummary" 
+                                class="form-input" 
+                                rows="4" 
+                                placeholder="Describe what viewers will learn in this video..." 
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="videoTopics">Topics (comma-separated)</label>
+                            <input 
+                                type="text" 
+                                id="videoTopics" 
+                                class="form-input" 
+                                placeholder="e.g., VoodooBot, PropBot, Risk Management" 
+                                required
+                            />
+                            <small style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; display: block;">
+                                Separate topics with commas
+                            </small>
+                        </div>
+
+                        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%;" id="addVideoBtn">
+                            ➕ Add Video to Library
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Video List -->
+                <div class="recent-announcements-card">
+                    <h3>Video Library (Database)</h3>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 8px;">Manage all videos in the library</p>
+                    <div id="videoLibraryList" class="recent-list">
+                        <div class="recent-item" style="justify-content: center; padding: 30px; color: rgba(255,255,255,0.4);">
+                            Loading videos...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Management Section -->
+        <div class="admin-user-management-section" id="adminStatsManagementSection">
+            <div class="admin-announcements-header">
+                <button class="admin-back-btn" onclick="hideStatsManagement()">← Back to Dashboard</button>
+                <h2>📊 Stats Management</h2>
+            </div>
+
+            <div class="admin-announcements-content">
+                <!-- Update Stats Form -->
+                <div class="send-announcement-card">
+                    <h3>🎯 Update Homepage Statistics</h3>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 24px;">
+                        Update the four statistics cards displayed on the client homepage.
+                    </p>
+                    
+                    <form id="updateStatsForm" onsubmit="updateHomeStats(event)">
+                        
+                        <!-- Total Return Card -->
+                        <div class="stats-card-editor">
+                            <h4 style="color: #FFD700; font-size: 16px; margin-bottom: 16px;">📈 Total Return</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="totalReturnValue">Main Value (e.g., +32.4%)</label>
+                                    <input 
+                                        type="text" 
+                                        id="totalReturnValue" 
+                                        class="form-input" 
+                                        placeholder="+32.4%" 
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="totalReturnChange">Change Text (e.g., ↑ 4.8% this week)</label>
+                                    <input 
+                                        type="text" 
+                                        id="totalReturnChange" 
+                                        class="form-input" 
+                                        placeholder="↑ 4.8% this week" 
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Value Card -->
+                        <div class="stats-card-editor">
+                            <h4 style="color: #FFD700; font-size: 16px; margin-bottom: 16px;">💰 Portfolio Value</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="portfolioValue">Main Value (e.g., $1.2M)</label>
+                                    <input 
+                                        type="text" 
+                                        id="portfolioValue" 
+                                        class="form-input" 
+                                        placeholder="$1.2M" 
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="portfolioChange">Change Text (e.g., ↑ $86.4K)</label>
+                                    <input 
+                                        type="text" 
+                                        id="portfolioChange" 
+                                        class="form-input" 
+                                        placeholder="↑ $86.4K" 
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active Strategies Card -->
+                        <div class="stats-card-editor">
+                            <h4 style="color: #FFD700; font-size: 16px; margin-bottom: 16px;">🎯 Active Strategies</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="activeStrategiesValue">Main Value (e.g., 15)</label>
+                                    <input 
+                                        type="text" 
+                                        id="activeStrategiesValue" 
+                                        class="form-input" 
+                                        placeholder="15" 
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="activeStrategiesChange">Change Text (e.g., ↑ 3 deployed)</label>
+                                    <input 
+                                        type="text" 
+                                        id="activeStrategiesChange" 
+                                        class="form-input" 
+                                        placeholder="↑ 3 deployed" 
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Success Rate Card -->
+                        <div class="stats-card-editor">
+                            <h4 style="color: #FFD700; font-size: 16px; margin-bottom: 16px;">✅ Success Rate</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="successRateValue">Main Value (e.g., 71.8%)</label>
+                                    <input 
+                                        type="text" 
+                                        id="successRateValue" 
+                                        class="form-input" 
+                                        placeholder="71.8%" 
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="successRateChange">Change Text (e.g., ↑ 2.3%)</label>
+                                    <input 
+                                        type="text" 
+                                        id="successRateChange" 
+                                        class="form-input" 
+                                        placeholder="↑ 2.3%" 
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; margin-top: 24px;" id="updateStatsBtn">
+                            💾 Update All Statistics
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Current Stats Preview -->
+                <div class="recent-announcements-card">
+                    <h3>Current Statistics</h3>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 8px;">Live preview of what clients see</p>
+                    
+                    <div style="margin-top: 24px;">
+                        <div class="stats-preview-grid">
+                            <div class="stats-preview-card">
+                                <div class="stats-preview-label">TOTAL RETURN</div>
+                                <div class="stats-preview-value" id="previewTotalReturn">+32.4%</div>
+                                <div class="stats-preview-change" id="previewTotalReturnChange">↑ 4.8% this week</div>
+                            </div>
+                            <div class="stats-preview-card">
+                                <div class="stats-preview-label">PORTFOLIO VALUE</div>
+                                <div class="stats-preview-value" id="previewPortfolio">$1.2M</div>
+                                <div class="stats-preview-change" id="previewPortfolioChange">↑ $86.4K</div>
+                            </div>
+                            <div class="stats-preview-card">
+                                <div class="stats-preview-label">ACTIVE STRATEGIES</div>
+                                <div class="stats-preview-value" id="previewStrategies">15</div>
+                                <div class="stats-preview-change" id="previewStrategiesChange">↑ 3 deployed</div>
+                            </div>
+                            <div class="stats-preview-card">
+                                <div class="stats-preview-label">SUCCESS RATE</div>
+                                <div class="stats-preview-value" id="previewSuccessRate">71.8%</div>
+                                <div class="stats-preview-change" id="previewSuccessRateChange">↑ 2.3%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Profile Manager Modal -->
@@ -7102,111 +8348,79 @@
         </div>
     </div>
 
-    <!-- Media Management Section -->
-    <div class="admin-user-management-section" id="adminMediaManagementSection">
-        <div class="admin-announcements-header">
-            <button class="admin-back-btn" onclick="hideMediaManagement()">← Back to Dashboard</button>
-            <h2>📹 Media Management</h2>
-        </div>
-
-        <div class="admin-announcements-content">
-            <!-- Add New Video Form -->
-            <div class="send-announcement-card">
-                <h3>🎬 Add New Video</h3>
-                <form id="addVideoForm" onsubmit="addNewVideo(event)">
-                    <div class="form-group">
-                        <label for="videoTitle">Video Title</label>
-                        <input 
-                            type="text" 
-                            id="videoTitle" 
-                            class="form-input" 
-                            placeholder="e.g., Weekly Trading Recap..." 
-                            required
-                        />
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="videoCategory">Category</label>
-                            <select class="form-select" id="videoCategory" required>
-                                <option value="">Select category...</option>
-                                <option value="Performance Updates">Performance Updates</option>
-                                <option value="Getting Started">Getting Started</option>
-                                <option value="Strategy">Strategy</option>
-                                <option value="Risk Management">Risk Management</option>
-                                <option value="Analysis">Analysis</option>
-                                <option value="Mindset">Mindset</option>
-                                <option value="Technology">Technology</option>
-                                <option value="Market Updates">Market Updates</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="videoDuration">Duration (minutes)</label>
-                            <input 
-                                type="text" 
-                                id="videoDuration" 
-                                class="form-input" 
-                                placeholder="e.g., 22" 
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="videoLoomUrl">Loom Embed URL</label>
-                        <input 
-                            type="url" 
-                            id="videoLoomUrl" 
-                            class="form-input" 
-                            placeholder="https://www.loom.com/embed/..." 
-                            required
-                        />
-                        <small style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; display: block;">
-                            Paste the Loom embed URL (starts with https://www.loom.com/embed/)
-                        </small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="videoSummary">Summary / Description</label>
-                        <textarea 
-                            id="videoSummary" 
-                            class="form-input" 
-                            rows="4" 
-                            placeholder="Describe what viewers will learn in this video..." 
-                            required
-                        ></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="videoTopics">Topics (comma-separated)</label>
-                        <input 
-                            type="text" 
-                            id="videoTopics" 
-                            class="form-input" 
-                            placeholder="e.g., VoodooBot, PropBot, Risk Management" 
-                            required
-                        />
-                        <small style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; display: block;">
-                            Separate topics with commas
-                        </small>
-                    </div>
-
-                    <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%;" id="addVideoBtn">
-                        ➕ Add Video to Library
-                    </button>
-                </form>
+    <!-- Preferences Modal -->
+    <div class="profile-modal" id="preferencesModal">
+        <div class="profile-modal-content">
+            <div class="profile-modal-header">
+                <h2>⚙️ Preferences</h2>
+                <button class="profile-modal-close" onclick="closePreferences()">✕</button>
             </div>
 
-            <!-- Video List -->
-            <div class="recent-announcements-card">
-                <h3>Video Library (Database)</h3>
-                <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 8px;">Manage all videos in the library</p>
-                <div id="videoLibraryList" class="recent-list">
-                    <div class="recent-item" style="justify-content: center; padding: 30px; color: rgba(255,255,255,0.4);">
-                        Loading videos...
+            <div class="profile-modal-body" style="max-width: 500px; margin: 0 auto;">
+                
+                <!-- Theme Settings -->
+                <div class="preference-section">
+                    <h3 style="font-size: 18px; margin-bottom: 16px; color: #FFD700;">🎨 Appearance</h3>
+                    
+                    <div class="preference-item">
+                        <div class="preference-label">
+                            <strong>Theme</strong>
+                            <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px;">Choose your preferred color scheme</p>
+                        </div>
+                        <div class="theme-toggle">
+                            <button class="theme-option active" id="darkModeBtn" onclick="setTheme('dark')">
+                                🌙 Dark Mode
+                            </button>
+                            <button class="theme-option" id="lightModeBtn" onclick="setTheme('light')">
+                                ☀️ Light Mode
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Magnification Settings -->
+                <div class="preference-section" style="margin-top: 32px;">
+                    <h3 style="font-size: 18px; margin-bottom: 16px; color: #FFD700;">🔍 Display Size</h3>
+                    
+                    <div class="preference-item">
+                        <div class="preference-label">
+                            <strong>Zoom Level</strong>
+                            <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px;">Adjust the size of text and interface elements</p>
+                        </div>
+                        
+                        <div class="zoom-slider-container">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 12px; color: rgba(255,255,255,0.5);">75%</span>
+                                <span id="zoomValue" style="font-size: 14px; font-weight: 600; color: #FFD700;">100%</span>
+                                <span style="font-size: 12px; color: rgba(255,255,255,0.5);">150%</span>
+                            </div>
+                            <input 
+                                type="range" 
+                                class="zoom-slider" 
+                                id="zoomSlider"
+                                min="75" 
+                                max="150" 
+                                value="100" 
+                                step="5"
+                                oninput="updateZoom(this.value)"
+                            />
+                            <div class="zoom-presets">
+                                <button class="zoom-preset-btn" onclick="setZoom(75)">Small</button>
+                                <button class="zoom-preset-btn active" onclick="setZoom(100)">Default</button>
+                                <button class="zoom-preset-btn" onclick="setZoom(125)">Large</button>
+                                <button class="zoom-preset-btn" onclick="setZoom(150)">X-Large</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save Notice -->
+                <div style="margin-top: 32px; padding: 16px; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 12px;">
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.8); margin: 0;">
+                        💡 Your preferences are automatically saved and will persist across sessions.
+                    </p>
+                </div>
+
             </div>
         </div>
     </div>
