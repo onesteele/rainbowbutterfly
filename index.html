@@ -5126,6 +5126,13 @@
             }
 
         // ============================================
+        // OMNISEND CONFIGURATION
+        // ============================================
+        // Get your API key from: https://app.omnisend.com/settings/api-keys
+        const OMNISEND_API_KEY = 'YOUR_OMNISEND_API_KEY_HERE';
+        const OMNISEND_ENABLED = false; // Set to true when API key is added
+
+        // ============================================
         // SUPABASE CONFIGURATION
         // ============================================
         // Get your keys from: https://app.supabase.com/project/_/settings/api
@@ -7157,6 +7164,168 @@
         }
 
         // Send announcement function
+        // ============================================
+        // OMNISEND NOTIFICATION FUNCTIONS
+        // ============================================
+        
+        async function sendOmnisendNotifications(title, message, channel, emoji, sendEmail, sendWebPush) {
+            try {
+                // Fetch all active users with emails
+                const { data: users, error } = await supabase
+                    .from('users')
+                    .select('email, name')
+                    .eq('status', 'active')
+                    .not('email', 'is', null);
+
+                if (error) {
+                    console.error('Error fetching users:', error);
+                    return;
+                }
+
+                if (!users || users.length === 0) {
+                    console.log('No active users with emails found');
+                    return;
+                }
+
+                console.log(`Sending notifications to ${users.length} users...`);
+
+                // Format channel name
+                const channelName = channel.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                
+                // Clean message (remove HTML tags for notifications)
+                const cleanMessage = message.replace(/<br>/g, '\n').replace(/<[^>]*>/g, '');
+
+                // Send email notifications
+                if (sendEmail) {
+                    for (const user of users) {
+                        await sendOmnisendEmail(user.email, user.name, title, cleanMessage, channel, channelName, emoji);
+                    }
+                }
+
+                // Send web push notifications
+                if (sendWebPush) {
+                    await sendOmnisendWebPush(title, cleanMessage, channel, channelName, emoji);
+                }
+
+                console.log('✅ Omnisend notifications sent successfully');
+            } catch (error) {
+                console.error('Error sending Omnisend notifications:', error);
+            }
+        }
+
+        async function sendOmnisendEmail(email, name, title, message, channel, channelName, emoji) {
+            try {
+                const firstName = name ? name.split(' ')[0] : 'there';
+                
+                const response = await fetch('https://api.omnisend.com/v3/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-KEY': OMNISEND_API_KEY
+                    },
+                    body: JSON.stringify({
+                        email: {
+                            to: [{ email: email }],
+                            subject: `${emoji} ${title} - Profit Insider`,
+                            content: {
+                                html: `
+                                    <!DOCTYPE html>
+                                    <html>
+                                    <head>
+                                        <style>
+                                            body { font-family: Arial, sans-serif; background-color: #0a0a0a; color: #ffffff; margin: 0; padding: 0; }
+                                            .container { max-width: 600px; margin: 0 auto; background: #1a1a1a; border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 16px; overflow: hidden; }
+                                            .header { background: linear-gradient(135deg, #FFD700, #FFC107); padding: 30px; text-align: center; }
+                                            .header h1 { margin: 0; color: #0a0a0a; font-size: 24px; }
+                                            .content { padding: 40px 30px; }
+                                            .announcement-box { background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 24px; margin: 20px 0; }
+                                            .emoji { font-size: 48px; margin-bottom: 16px; }
+                                            .title { color: #FFD700; font-size: 20px; font-weight: bold; margin-bottom: 12px; }
+                                            .message { color: rgba(255, 255, 255, 0.9); font-size: 16px; line-height: 1.6; white-space: pre-wrap; }
+                                            .channel-badge { display: inline-block; background: rgba(255, 215, 0, 0.2); color: #FFD700; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-top: 16px; }
+                                            .cta-button { display: inline-block; background: linear-gradient(135deg, #FFD700, #FFC107); color: #0a0a0a; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 24px; }
+                                            .footer { background: rgba(26, 26, 26, 0.5); padding: 20px; text-align: center; color: rgba(255, 255, 255, 0.5); font-size: 12px; }
+                                        </style>
+                                    </head>
+                                    <body>
+                                        <div class="container">
+                                            <div class="header">
+                                                <h1>${emoji} New Announcement</h1>
+                                            </div>
+                                            <div class="content">
+                                                <p style="color: rgba(255, 255, 255, 0.8); font-size: 16px;">Hi ${firstName},</p>
+                                                <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">A new announcement has been posted in Profit Insider:</p>
+                                                
+                                                <div class="announcement-box">
+                                                    <div class="title">${title}</div>
+                                                    <div class="message">${message}</div>
+                                                    <div class="channel-badge">#${channel}</div>
+                                                </div>
+                                                
+                                                <center>
+                                                    <a href="https://clientportal.profit-insiders.com" class="cta-button">
+                                                        View in Dashboard →
+                                                    </a>
+                                                </center>
+                                            </div>
+                                            <div class="footer">
+                                                <p>© ${new Date().getFullYear()} Profit Insider. All rights reserved.</p>
+                                                <p style="margin-top: 8px;">You're receiving this because you're an active member of the Profit Insider platform.</p>
+                                            </div>
+                                        </div>
+                                    </body>
+                                    </html>
+                                `
+                            }
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Omnisend email error:', errorData);
+                }
+            } catch (error) {
+                console.error('Error sending Omnisend email:', error);
+            }
+        }
+
+        async function sendOmnisendWebPush(title, message, channel, channelName, emoji) {
+            try {
+                // Omnisend Web Push Notification
+                const response = await fetch('https://api.omnisend.com/v3/push', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-KEY': OMNISEND_API_KEY
+                    },
+                    body: JSON.stringify({
+                        title: `${emoji} ${title}`,
+                        message: message.substring(0, 120) + (message.length > 120 ? '...' : ''),
+                        url: 'https://clientportal.profit-insiders.com',
+                        image: 'https://clientportal.profit-insiders.com/PIlogo.png', // Optional: Add your logo URL
+                        badge: emoji,
+                        tag: `announcement-${Date.now()}`,
+                        // Send to all subscribed users
+                        audience: {
+                            type: 'all'
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Omnisend web push error:', errorData);
+                }
+            } catch (error) {
+                console.error('Error sending Omnisend web push:', error);
+            }
+        }
+
+        // ============================================
+        // SEND ANNOUNCEMENT
+        // ============================================
+        
         async function sendAnnouncement(event) {
             event.preventDefault();
             event.stopPropagation();
@@ -7170,6 +7339,8 @@
             const message = document.getElementById('announcementMessage').value;
             const emoji = document.getElementById('announcementEmoji').value || '📢';
             const channel = document.getElementById('announcementChannel').value;
+            const sendEmail = document.getElementById('sendEmailNotification').checked;
+            const sendWebPush = document.getElementById('sendWebPushNotification').checked;
             
             // Get current timestamp
             const now = new Date();
@@ -7214,11 +7385,27 @@
                     return false;
                 }
 
+                // Send Omnisend notifications if requested
+                if ((sendEmail || sendWebPush) && OMNISEND_ENABLED) {
+                    await sendOmnisendNotifications(title, message, channel, emoji, sendEmail, sendWebPush);
+                } else if ((sendEmail || sendWebPush) && !OMNISEND_ENABLED) {
+                    alert('⚠️ Omnisend notifications requested but API key not configured.\n\nPlease add your Omnisend API key in the code.');
+                }
+
                 // Clear form
                 document.getElementById('announcementForm').reset();
                 
                 // Show success message
-                alert(`✅ Announcement sent successfully!\n\nChannel: #${channel}\n\n📢 This announcement will appear on ALL devices in real-time!`);
+                let successMsg = `✅ Announcement sent successfully!\n\nChannel: #${channel}\n\n📢 This announcement will appear on ALL devices in real-time!`;
+                
+                if (sendEmail && OMNISEND_ENABLED) {
+                    successMsg += '\n\n📧 Email notifications sent!';
+                }
+                if (sendWebPush && OMNISEND_ENABLED) {
+                    successMsg += '\n\n🔔 Web push notifications sent!';
+                }
+                
+                alert(successMsg);
                 return false;
             } catch (err) {
                 console.error('Unexpected error sending announcement:', err);
@@ -7785,7 +7972,39 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%;">
+                        <!-- Omnisend Notification Options -->
+                        <div class="notification-options" style="background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 12px; padding: 20px; margin-top: 24px;">
+                            <h4 style="color: #FFD700; font-size: 14px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">
+                                📬 Send Notifications
+                            </h4>
+                            <div class="checkbox-group" style="display: flex; flex-direction: column; gap: 12px;">
+                                <label class="checkbox-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input 
+                                        type="checkbox" 
+                                        id="sendEmailNotification" 
+                                        style="width: 18px; height: 18px; cursor: pointer; accent-color: #FFD700;"
+                                    />
+                                    <span style="color: rgba(255, 255, 255, 0.9); font-size: 15px;">
+                                        📧 Send Email Notification to all users
+                                    </span>
+                                </label>
+                                <label class="checkbox-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input 
+                                        type="checkbox" 
+                                        id="sendWebPushNotification" 
+                                        style="width: 18px; height: 18px; cursor: pointer; accent-color: #FFD700;"
+                                    />
+                                    <span style="color: rgba(255, 255, 255, 0.9); font-size: 15px;">
+                                        🔔 Send Web Push Notification to all users
+                                    </span>
+                                </label>
+                            </div>
+                            <p style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-top: 12px; line-height: 1.5;">
+                                ℹ️ Notifications will be sent via Omnisend to all active users. Make sure your Omnisend API key is configured.
+                            </p>
+                        </div>
+
+                        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; margin-top: 24px;">
                             Send Announcement
                         </button>
                     </form>
@@ -8410,36 +8629,16 @@
         </div>
     </div>
 
+    <div id='tawk_695452bda6d2071982ebf8aa'></div>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-    var Tawk_API = Tawk_API || {};
-    var Tawk_LoadStart = new Date();
-    
-    // Set embedded mode and container
-    Tawk_API.embedded = 'tawk_695452bda6d2071982ebf8aa';
-    
-    // Customize appearance to fit container
-    Tawk_API.customStyle = {
-        visibility : {
-            desktop : {
-                position : 'br',
-                xOffset : 0,
-                yOffset : 0
-            },
-            mobile : {
-                position : 'br',
-                xOffset : 0,
-                yOffset : 0
-            }
-        }
-    };
-    
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    Tawk_API.embedded='tawk_695452bda6d2071982ebf8aa';
     (function(){
-        var s1 = document.createElement("script");
-        var s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/695452bda6d2071982ebf8aa/1jdtsqmsm';
-        s1.charset = 'UTF-8';
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/695452bda6d2071982ebf8aa/1je5ader6';
+        s1.charset='UTF-8';
         s1.setAttribute('crossorigin','*');
         s0.parentNode.insertBefore(s1,s0);
     })();
