@@ -4721,8 +4721,8 @@
             <!-- Support Page -->
             <div class="page" id="support">
                 <div class="support-page-container">
-                    <!-- Left Side: FAQ Section (65%) -->
-                    <div class="faq-section">
+                    <!-- FAQ Section (Full Width) -->
+                    <div class="faq-section" style="width: 100%; max-width: 100%;">
                         <div class="faq-header">
                             <button class="help-center-badge">
                                 ⚡ HELP CENTER
@@ -5039,20 +5039,6 @@
                             <div class="no-results-icon">🔍</div>
                             <div class="no-results-text">No FAQs found</div>
                             <div class="no-results-subtext">Try different keywords or browse by category</div>
-                        </div>
-                    </div>
-
-                    <!-- Right Side: Chat Widget Area (35%) -->
-                    <div class="chat-widget-container">
-                        <div class="chat-widget-wrapper">
-                            <div class="chat-header">
-                                <div class="chat-header-icon">💬</div>
-                                <h3 class="chat-header-title">VIP Support</h3>
-                            </div>
-                            <div class="chat-widget-embed">
-                                <!-- Tawk.to Chat Widget -->
-                                <div id='tawk_695452bda6d2071982ebf8aa'></div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -8629,11 +8615,10 @@
         </div>
     </div>
 
-    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Inline Widget (Floating on all pages)-->
     <script type="text/javascript">
     var Tawk_API = Tawk_API || {};
     var Tawk_LoadStart = new Date();
-    
     (function(){
         var s1 = document.createElement("script");
         var s0 = document.getElementsByTagName("script")[0];
@@ -8644,21 +8629,7 @@
         s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
-    <!--End of Tawk.to Script-->
-
-    <!--Start of Tawk.to Embedded Widget for Support Page-->
-    <script type="text/javascript">
-    // Separate embedded widget for Support page container
-    document.addEventListener('DOMContentLoaded', function() {
-        const supportPageContainer = document.getElementById('tawk_695452bda6d2071982ebf8aa');
-        if (supportPageContainer) {
-            // Create embedded instance for the support page container
-            var Tawk_API_Embedded = Tawk_API_Embedded || {};
-            Tawk_API_Embedded.embedded = 'tawk_695452bda6d2071982ebf8aa';
-        }
-    });
-    </script>
-    <!--End of Tawk.to Embedded Widget-->
+    <!--End of Tawk.to Inline Widget-->
 
 </body>
 </html>
